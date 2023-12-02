@@ -1,0 +1,17 @@
+Python: 3.11.5
+
+os,
+sys,
+time,
+datetime,
+pickel,
+
+
+Site Modules:
+    firebase-admin: 6.2.0
+    numpy: 1.26.2
+    cvzone: 1.6.1
+    face-recognition: 1.3.0
+    opencv-python: 4.8.1.78
+    pandas: 2.1.3
+    PySide6: 6.6.0
