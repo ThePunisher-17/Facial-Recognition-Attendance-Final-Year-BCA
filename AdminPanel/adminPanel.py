@@ -37,21 +37,21 @@ class AdminPanel(QWidget):
         # self.cred = credentials.Certificate(f"{self.path}\\Core\\Database Key\\serviceAccountKey.json")
 
         # firebase_admin.initialize_app(self.cred, {
-        #     "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-        #     'storageBucket': "employeeattendancerealtime.appspot.com"
+        #      "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+        #      'storageBucket': "employeeattendancerealtime.appspot.com"
         # })
 
         cred = credentials.Certificate(
-            f'{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json')
+           f'{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json')
         project_id = cred.project_id
 
         try:
-            firebase_admin.get_app(project_id)
+           firebase_admin.get_app(project_id)
 
         except ValueError:
-            firebase_admin.initialize_app(credential=cred, name=project_id, options={
-                "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-            })
+           firebase_admin.initialize_app(credential=cred, name=project_id, options={
+               "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+           })
 
         self.QMessageBoxs = QMessageBox()
 

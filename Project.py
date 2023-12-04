@@ -4,9 +4,9 @@ import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QPoint
 
-from AdminPanel.adminPanel import AdminPanel
-from LoginPage.loginPage import LoginPage
-from SignUp.signUp import SignUp
+from AdminPanel.adminpanel import AdminPanel
+from LoginWindow.loginwindow import LoginWindow
+from SignUpWindow.signupwindow import SignUpWindow
 
 import firebase_admin
 from firebase_admin import credentials, db
@@ -32,8 +32,8 @@ class Project(QMainWindow):
         self.ui = Ui_Project()
         self.ui.setupUi(self)
 
-        self.signup = SignUp()
-        self.login = LoginPage()
+        self.signup = SignUpWindow()
+        self.login = LoginWindow()
         self.admin = AdminPanel()
 
         self.ui.stackedWidget.addWidget(self.signup)

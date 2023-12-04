@@ -1,222 +1,392 @@
-/*= Style for mainwindow START
+    /* SignUp Window */
+    #SignUpWindow {
+        background-color: rgba(0, 0, 0, 0.5);
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.66 #5E17EB, stop:1 #5E17EB);
+    }
+
+    QFrame#coverFrame {
+        background-color: rgba(17, 57, 57, .6);
+        border-radius: 10%;
+        border-radius: 40px;
+    }
+
+    QFrame#frame_4 {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
+        border-radius: 30px;
+    }
+
+    QFrame#frame {
+        background-color: rgba(17, 57, 57, .4);
+        border-radius: 30px;
+    }
+
+    QPushButton#Logo {
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 30px;
+        color: rgba(250, 250, 250, 0.5);
+    }
+
+    QPushButton#pushButton_3,
+    #goToLogin {
+        border-radius: 30px;
+        background-color: rgba(0, 0, 0, .5);
+        color: rgba(250, 250, 250, 0.5);
+        border: none;
+    }
+
+
+
+    /* Login Window */
+    QWidget#LoginWindow {
+        background-color: rgba(0, 0, 0, 0.5);
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.66 #5E17EB, stop:1 #5E17EB);
+    }
+
+    QFrame#coverFrame {
+        background-color: rgba(17, 57, 57, .6);
+        border-radius: 10%;
+        border-radius: 40px;
+    }
+
+    QFrame#frame_4 {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
+        border-radius: 30px;
+    }
+
+    QFrame#frame {
+        background-color: rgba(17, 57, 57, .4);
+        border-radius: 30px;
+    }
+
+    QPushButton#Logo {
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 30px;
+        color: rgba(250, 250, 250, 0.5);
+    }
+
+    QPushButton#pushButton_3,
+    #goToSignUp {
+        border-radius: 30px;
+        background-color: rgba(0, 0, 0, .5);
+        color: rgba(250, 250, 250, 0.5);
+        border: none;
+    }
+
+
+    /* AdminPanel */
+
+
+    /*= Style for mainwindow START
   ==================================================== */
-	#StatusBar{
-		background-color: rgba(125, 125, 125, 1)
-	}
-/*= END
+    #StatusBar {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
+    }
+
+    /*= END
   ==================================================== */
 
-/*= Style for button to change menu style START
+    /*= Style for button to change menu style START
   ==================================================== */
-	#menuButton {
-		padding: 5px;
-		border: none;
-		width: 30px;
-		height: 30px;
-	}
-/*= END
+    #menuButton {
+        padding: 5px;
+        border: none;
+        width: 30px;
+        height: 30px;
+    }
+
+    /*= END
   ==================================================== */
 
-/*= Style for header widget START
+    /*= Style for header widget START
   ==================================================== */
-	#header {
-		background-color: rgba(66, 61, 0, 1);
-		border-bottom: 1px solid #b0b0b0;
-	}
-	#header QPushButton{
-		background-color: rgba(66, 61, 0, 0.5);
-		/* border-bottom: 1px solid #b0b0b0; */
-		border: none;
-		border-bottom: 1px solid #b0b0b0;
-	}
-	#header QPushButton:hover{
-		background-color: rgba( 86, 101, 115, 0.5);
-	}
-	#header QPushButton:checked{
-		color: #80ffdb;
-	}
+    #header {
+        background-color: rgba(66, 61, 0, 1);
+        border-bottom: 1px solid #b0b0b0;
+    }
 
-/*= END
+    #header QPushButton {
+        background-color: rgba(66, 61, 0, 0.5);
+        /* border-bottom: 1px solid #b0b0b0; */
+        border: none;
+        border-bottom: 1px solid #b0b0b0;
+    }
+
+    #header QPushButton:hover {
+        background-color: rgba(86, 101, 115, 0.5);
+    }
+
+    #header QPushButton:checked {
+        color: #80ffdb;
+    }
+
+    /*= END
   ==================================================== */
 
-/*= Style for menu with icon only START
+
+    /*= Style for Attendance_table START
   ==================================================== */
-  	/* style for widget */
-	#IconContainer {
-		background-color: #113939;
-		border-right: 1px solid #b0b0b0;
-	}
+
+    #Attendance_Table {
+        border: 1px solid black;
+    }
+
+    #AdminPanel {
+        background-color: rgba(240, 255, 240, 1);
+    }
+
+    /*= END
+  ==================================================== */
+
+
+    /*= Style for photoFrame
+  START
+  ==================================================== */
+    #imageFrame {
+        border: 2px solid black;
+        /* border-radius: 50px; */
+    }
+
+
+    /*= END
+	==================================================== */
+
+
+    /*= Style for empAdderFrame
+	START
+	==================================================== */
+
+    #empAdderFrame {
+        background-color: rgba(243, 15, 15, 1);
+        border: 2px solid black;
+        border-radius: 80px;
+    }
+
+    /*= END
+	==================================================== */
+
+
+    /*= Style for AddEmployee page
+	START
+	==================================================== */
+
+    #AddEmpFrame {
+        border: 2px solid black;
+        background-color: rgba(255, 255, 255, 1);
+    }
+
+    /*= END
+	==================================================== */
+
+
+    /*= Entire Window Style Start
+	==================================================== */
+    QWidget#AdminPanel {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.66 #5E17EB, stop:1 #5E17EB);
+
+    }
+
+    /*= END
+	==================================================== */
+
+
+    /*= Style for menu with icon and text START
+	==================================================== */
+    /* style for widget */
+    #IconAndNameContainer {
+        background: rgba(17, 57, 57, 0.4);
+        border-right: 1px solid #b0b0b0;
+    }
+
+    /* style for QPushButton */
+    #IconAndNameContainer QPushButton {
+        border: none;
+        border-radius: 3px;
+        text-align: left;
+        padding: 8px 0 8px 15px;
+        color: #788596;
+    }
+
+    #IconAndNameContainer QPushButton:hover {
+        background-color: rgba(86, 101, 115, 0.5);
+    }
+
+    #IconAndNameContainer QPushButton:checked {
+        color: #80ffdb;
+    }
+
+    /* style for logo image */
+    #IconAndNameContainer MainLogo {
+        padding: 5px;
+        color: #fff;
+        text-align: center;
+    }
+
+    /*= END
+	==================================================== */
+
+    /*= Style for menu with icon only START
+	==================================================== */
+    /* style for widget */
+    #IconContainer {
+        background: rgba(17, 57, 57, 0.4);
+        border-right: 1px solid #b0b0b0;
+    }
 
     /* style for QPushButton and QLabel */
-	#IconContainer QPushButton, QLabel {
-		height:50px;
-		border:none;
-		/* border-bottom: 1px solid #b0b0b0; */
-	}
+    #IconContainer QPushButton,
+    QLabel {
+        height: 50px;
+        border: none;
+        /* border-bottom: 1px solid #b0b0b0; */
+    }
 
-	#IconContainer QPushButton:hover {
-		background-color: rgba( 86, 101, 115, 0.5);
-	}
+    #IconContainer QPushButton:hover {
+        background-color: rgba(86, 101, 115, 0.5);
+    }
 
-	/* style for logo image */
-	#logo_label_1 {
-		padding: 5px
-	}
-/*= END
-  ==================================================== */
+    /* style for logo image */
+    #logo_label_1 {
+        padding: 5px
+    }
 
-/*= Style for menu with icon and text START
-  ==================================================== */
-	/* style for widget */
-	#IconAndNameContainer {
-		background-color: #113939;
-		border-right: 1px solid #b0b0b0;
-	}
+    /*= END
+	==================================================== */
 
-	/* style for QPushButton */
-	#IconAndNameContainer QPushButton {
-		border:none;
-		border-radius: 3px;
-		text-align: left;
-		padding: 8px 0 8px 15px;
-		color: #788596;
-	}
+    /*= Style for Dashboard
+	START
+	==================================================== */
+    #empFrame {
+        border: 2px solid black;
+        border-radius: 5px;
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+    }
 
-	#IconAndNameContainer QPushButton:hover {
-		background-color: rgba( 86, 101, 115, 0.5);
-	}
+    #totalEmpLabel {
+        /* background-color: rgba(0, 78, 78, .5); */
+        border: 1px solid black;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
 
-	#IconAndNameContainer QPushButton:checked {
-		color: #80ffdb;
-	}
+    #totalAdminLabel {
+        /* background-color: rgba(0, 78, 78, .5); */
+        border: 1px solid black;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
 
-	/* style for logo image */
-	#IconAndNameContainer MainLogo {
-		padding: 5px;
-		color: #fff;
-		text-align: center;
-	}
+    #adminFrame {
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        border: 2px solid black;
+        border-radius: 5px;
+    }
 
-/*= END
-  ==================================================== */
+    /*= END
+	==================================================== */
 
 
-/*= Style for Attendance_table START
-  ==================================================== */
+    /*= Style for EmpList Detailed
+	START
+	==================================================== */
+    QFrame#empListFrame {
+        background-color: rgba(17, 57, 57, .5);
+    }
 
-	#Attendance_Table{
-		border: 1px solid black;
-	}
+    QTableWidget#attendanceTableDetailed {
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+    }
 
-	#AdminPanel{
-		background-color: rgba(240,255,240, 1);
-	}
+    QTableWidget#attendanceTableDetailed QHeaderView::section {
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+    }
 
-/*= END
-  ==================================================== */
-
-/*= Style for Reports Page
- START
-  ==================================================== */
-
-	#reportLabel{
-		background-color: #113939;
-	}
-	#ReportsBody{
-		background-color: rgba(255,255,255, 1)
-	}
-
-	#ReportsFrame{
-		background-color: rgba( 245,245,220, 0.5)
-	}
-	#AdminReporst{
-		border-top: 3px solid black;
-	}
-
-/*= END
-  ==================================================== */
-
-/*= Style for photoFrame
- START
-  ==================================================== */
-	#imageFrame{
-		border: 2px solid black;
-		/* border-radius: 50px; */
-	}
-	
-
-/*= END
+    /*= END
   ==================================================== */
 
 
-/*= Style for empAdderFrame
- START
+    /*= Style for EmpList short
+	START
+	==================================================== */
+    QFrame#empListShortFrame {
+        background-color: rgba(17, 57, 57, .5);
+        border-radius: 10%;
+    }
+
+    QTableWidget#thisMonthAttendance {
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        border-radius: 10%;
+    }
+
+    QTableWidget#thisMonthAttendance QHeaderView::section {
+        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+    }
+
+    /*= END
   ==================================================== */
 
-	#empAdderFrame{
-		background-color: rgba(243, 15, 15, 1);
-		border: 2px solid black;
-        border-radius: 80px;
-	}
-/*= END
-  ==================================================== */
-
-/*= Style for Dashboard
- START
-  ==================================================== */
-	#empFrame{
-		border: 2px solid black;
-		border-radius: 5px;
-		background-color: rgba(255, 255, 255, 1);
-	}
-	#totalEmpLabel{
-		background-color: rgba(0, 78, 78, 1);
-		border: 1px solid black;
-		border-top-left-radius: 4px;
-		border-top-right-radius: 4px; 
-		border-bottom-left-radius: 0px; 
-		border-bottom-right-radius: 0px;
-	}
-	#totalAdminLabel{
-		background-color: rgba(0, 78, 78, 1);
-		border: 1px solid black;
-		border-top-left-radius: 4px;
-		border-top-right-radius: 4px; 
-		border-bottom-left-radius: 0px; 
-		border-bottom-right-radius: 0px;
-	}
-	#adminFrame{
-		background-color: rgba(255, 255, 255, 1);
-		border: 2px solid black;
-		border-radius: 5px;
-	}
-
-/*= END
-  ==================================================== */
-
-/*= Style for AddEmployee page
- START
-  ==================================================== */
-
-	#AddEmpFrame{
-		border: 2px solid black;
-		background-color: rgba(255, 255 ,255, 1);
-	}
-
-/*= END
-  ==================================================== */
-
-
-
-/* Login Page Designing
+    /*= Style for Add emp
   START
-  ====================================================
-*/
-  LoginPage{
-	background-color: rgb(17, 57, 57);
-  }
-
-/* END
   ==================================================== */
 
-  
+    QFrame#coverFrame {
+        background: rgba(17, 57, 57, .5);
+        border-radius: 10%;
+        border-radius: 40px;
+    }
+
+    QFrame#AddEmpFrame {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
+        border-radius: 5%;
+        border-radius: 40px;
+    }
+
+    QFrame#empDetailsFrame,
+    #empPhotoFrame {
+        background: rgba(17, 57, 57, .5);
+
+        border-radius: 5%;
+        border-radius: 40px;
+    }
+
+    /*= END
+==================================================== */
+
+    /*= Style for Reports Page
+ START
+  ==================================================== */
+
+    #reportLabel {
+        background: rgba(17, 57, 57, .5);
+    }
+
+    #ReportsBody {
+        background-color: rgba(255, 255, 255, 1)
+    }
+
+    QFrame#ReportsFrame {
+        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
+        border-radius: 10%;
+    }
+
+    #AdminReporst {
+        border-top: 3px solid black;
+    }
+
+    QFrame#coverFrameReports {
+        background: rgba(17, 57, 57, .5);
+        border-radius: 10%;
+    }
+
+    /*= END
+  ==================================================== */
+
+
+  QMainWindow#Project{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.67 #5E17EB, stop:1 #5E17EB);
+  }
