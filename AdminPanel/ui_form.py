@@ -31,14 +31,21 @@ class Ui_AdminPanel(object):
         self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.IconAndNameContainer = QWidget(AdminPanel)
         self.IconAndNameContainer.setObjectName(u"IconAndNameContainer")
+        self.IconAndNameContainer.setMinimumSize(QSize(200, 0))
         self.gridLayout_2 = QGridLayout(self.IconAndNameContainer)
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.MainLogo = QPushButton(self.IconAndNameContainer)
         self.MainLogo.setObjectName(u"MainLogo")
+        self.MainLogo.setEnabled(False)
+        font = QFont()
+        font.setFamilies([u"Rockwell"])
+        font.setPointSize(16)
+        self.MainLogo.setFont(font)
         icon = QIcon()
         icon.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Disabled, QIcon.Off)
         self.MainLogo.setIcon(icon)
         self.MainLogo.setIconSize(QSize(50, 50))
 
@@ -46,6 +53,10 @@ class Ui_AdminPanel(object):
 
         self.goToDashboardLabeled = QPushButton(self.IconAndNameContainer)
         self.goToDashboardLabeled.setObjectName(u"goToDashboardLabeled")
+        font1 = QFont()
+        font1.setFamilies([u"Rockwell"])
+        font1.setPointSize(14)
+        self.goToDashboardLabeled.setFont(font1)
         icon1 = QIcon()
         icon1.addFile(u"icons/dashboard.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.goToDashboardLabeled.setIcon(icon1)
@@ -56,6 +67,7 @@ class Ui_AdminPanel(object):
         self.launchAnAttenderLabeled = QPushButton(self.IconAndNameContainer)
         self.launchAnAttenderLabeled.setObjectName(u"launchAnAttenderLabeled")
         self.launchAnAttenderLabeled.setEnabled(True)
+        self.launchAnAttenderLabeled.setFont(font1)
         icon2 = QIcon()
         icon2.addFile(u"icons/attender.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.launchAnAttenderLabeled.setIcon(icon2)
@@ -66,6 +78,7 @@ class Ui_AdminPanel(object):
 
         self.goToAddEmployeeLabeled = QPushButton(self.IconAndNameContainer)
         self.goToAddEmployeeLabeled.setObjectName(u"goToAddEmployeeLabeled")
+        self.goToAddEmployeeLabeled.setFont(font1)
         icon3 = QIcon()
         icon3.addFile(u"icons/add.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.goToAddEmployeeLabeled.setIcon(icon3)
@@ -75,6 +88,9 @@ class Ui_AdminPanel(object):
 
         self.Exit_2 = QPushButton(self.IconAndNameContainer)
         self.Exit_2.setObjectName(u"Exit_2")
+        self.Exit_2.setMouseTracking(False)
+        self.Exit_2.setLayoutDirection(Qt.LeftToRight)
+        self.Exit_2.setAutoFillBackground(True)
         icon4 = QIcon()
         icon4.addFile(u"icons/exit.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.Exit_2.setIcon(icon4)
@@ -84,6 +100,7 @@ class Ui_AdminPanel(object):
 
         self.goToAttendanceLabeled = QPushButton(self.IconAndNameContainer)
         self.goToAttendanceLabeled.setObjectName(u"goToAttendanceLabeled")
+        self.goToAttendanceLabeled.setFont(font1)
         icon5 = QIcon()
         icon5.addFile(u"icons/attendance.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.goToAttendanceLabeled.setIcon(icon5)
@@ -93,6 +110,7 @@ class Ui_AdminPanel(object):
 
         self.goToReportsLabeled = QPushButton(self.IconAndNameContainer)
         self.goToReportsLabeled.setObjectName(u"goToReportsLabeled")
+        self.goToReportsLabeled.setFont(font1)
         icon6 = QIcon()
         icon6.addFile(u"icons/reports.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.goToReportsLabeled.setIcon(icon6)
@@ -102,6 +120,7 @@ class Ui_AdminPanel(object):
 
         self.goToListOfEmployeeLabeled = QPushButton(self.IconAndNameContainer)
         self.goToListOfEmployeeLabeled.setObjectName(u"goToListOfEmployeeLabeled")
+        self.goToListOfEmployeeLabeled.setFont(font1)
         icon7 = QIcon()
         icon7.addFile(u"icons/list.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.goToListOfEmployeeLabeled.setIcon(icon7)
@@ -195,6 +214,7 @@ class Ui_AdminPanel(object):
 
         self.IconLogo = QPushButton(self.IconContainer)
         self.IconLogo.setObjectName(u"IconLogo")
+        self.IconLogo.setEnabled(False)
         self.IconLogo.setIcon(icon)
         self.IconLogo.setIconSize(QSize(25, 30))
 
@@ -288,9 +308,9 @@ class Ui_AdminPanel(object):
         self.gridLayout_23.setObjectName(u"gridLayout_23")
         self.label_14 = QLabel(self.page)
         self.label_14.setObjectName(u"label_14")
-        font = QFont()
-        font.setFamilies([u"Rockwell Condensed"])
-        self.label_14.setFont(font)
+        font2 = QFont()
+        font2.setFamilies([u"Rockwell Condensed"])
+        self.label_14.setFont(font2)
 
         self.gridLayout_23.addWidget(self.label_14, 0, 0, 1, 1)
 
@@ -326,9 +346,9 @@ class Ui_AdminPanel(object):
         self.gridLayout_24.setObjectName(u"gridLayout_24")
         self.totalEmpLabel = QLabel(self.empFrame)
         self.totalEmpLabel.setObjectName(u"totalEmpLabel")
-        font1 = QFont()
-        font1.setFamilies([u"Elephant"])
-        self.totalEmpLabel.setFont(font1)
+        font3 = QFont()
+        font3.setFamilies([u"Elephant"])
+        self.totalEmpLabel.setFont(font3)
         self.totalEmpLabel.setFrameShape(QFrame.WinPanel)
         self.totalEmpLabel.setFrameShadow(QFrame.Raised)
 
@@ -347,10 +367,7 @@ class Ui_AdminPanel(object):
         self.gridLayout_19.setObjectName(u"gridLayout_19")
         self.totalEmpValue = QLabel(self.frame_10)
         self.totalEmpValue.setObjectName(u"totalEmpValue")
-        font2 = QFont()
-        font2.setFamilies([u"Rockwell"])
-        font2.setPointSize(14)
-        self.totalEmpValue.setFont(font2)
+        self.totalEmpValue.setFont(font1)
         self.totalEmpValue.setIndent(0)
 
         self.gridLayout_19.addWidget(self.totalEmpValue, 0, 1, 1, 1)
@@ -388,7 +405,7 @@ class Ui_AdminPanel(object):
         self.gridLayout_25.setObjectName(u"gridLayout_25")
         self.totalAdminLabel = QLabel(self.adminFrame)
         self.totalAdminLabel.setObjectName(u"totalAdminLabel")
-        self.totalAdminLabel.setFont(font1)
+        self.totalAdminLabel.setFont(font3)
         self.totalAdminLabel.setFrameShape(QFrame.WinPanel)
         self.totalAdminLabel.setFrameShadow(QFrame.Raised)
 
@@ -408,7 +425,7 @@ class Ui_AdminPanel(object):
 
         self.totalAdminValue = QLabel(self.frame_11)
         self.totalAdminValue.setObjectName(u"totalAdminValue")
-        self.totalAdminValue.setFont(font2)
+        self.totalAdminValue.setFont(font1)
 
         self.horizontalLayout_24.addWidget(self.totalAdminValue)
 
@@ -465,7 +482,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.AttendanceList = QLabel(self.page_2)
         self.AttendanceList.setObjectName(u"AttendanceList")
-        self.AttendanceList.setFont(font)
+        self.AttendanceList.setFont(font2)
 
         self.horizontalLayout_13.addWidget(self.AttendanceList)
 
@@ -484,10 +501,10 @@ class Ui_AdminPanel(object):
         self.gridLayout_7.setObjectName(u"gridLayout_7")
         self.currentMonthAndYear = QLabel(self.empListFrame)
         self.currentMonthAndYear.setObjectName(u"currentMonthAndYear")
-        font3 = QFont()
-        font3.setFamilies([u"Rockwell Condensed"])
-        font3.setPointSize(20)
-        self.currentMonthAndYear.setFont(font3)
+        font4 = QFont()
+        font4.setFamilies([u"Rockwell Condensed"])
+        font4.setPointSize(20)
+        self.currentMonthAndYear.setFont(font4)
         self.currentMonthAndYear.setStyleSheet(u"")
         self.currentMonthAndYear.setFrameShape(QFrame.WinPanel)
         self.currentMonthAndYear.setFrameShadow(QFrame.Raised)
@@ -524,7 +541,7 @@ class Ui_AdminPanel(object):
         self.gridLayout_26.setObjectName(u"gridLayout_26")
         self.label_2 = QLabel(self.page_3)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setFont(font)
+        self.label_2.setFont(font2)
         self.label_2.setFrameShape(QFrame.NoFrame)
 
         self.gridLayout_26.addWidget(self.label_2, 0, 0, 1, 1)
@@ -573,7 +590,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.empIdLabel = QLabel(self.widget)
         self.empIdLabel.setObjectName(u"empIdLabel")
-        self.empIdLabel.setFont(font1)
+        self.empIdLabel.setFont(font3)
 
         self.horizontalLayout_5.addWidget(self.empIdLabel)
 
@@ -595,7 +612,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.label_6 = QLabel(self.widget)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font1)
+        self.label_6.setFont(font3)
 
         self.horizontalLayout_14.addWidget(self.label_6)
 
@@ -619,7 +636,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.label_8 = QLabel(self.widget)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setFont(font1)
+        self.label_8.setFont(font3)
 
         self.horizontalLayout_9.addWidget(self.label_8)
 
@@ -639,10 +656,10 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
         self.label_7 = QLabel(self.widget)
         self.label_7.setObjectName(u"label_7")
-        font4 = QFont()
-        font4.setFamilies([u"Elephant"])
-        font4.setPointSize(8)
-        self.label_7.setFont(font4)
+        font5 = QFont()
+        font5.setFamilies([u"Elephant"])
+        font5.setPointSize(8)
+        self.label_7.setFont(font5)
 
         self.horizontalLayout_7.addWidget(self.label_7)
 
@@ -662,7 +679,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.empNameLabel = QLabel(self.widget)
         self.empNameLabel.setObjectName(u"empNameLabel")
-        self.empNameLabel.setFont(font1)
+        self.empNameLabel.setFont(font3)
 
         self.horizontalLayout_6.addWidget(self.empNameLabel)
 
@@ -682,7 +699,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
         self.label_10 = QLabel(self.widget)
         self.label_10.setObjectName(u"label_10")
-        self.label_10.setFont(font1)
+        self.label_10.setFont(font3)
 
         self.horizontalLayout_8.addWidget(self.label_10)
 
@@ -723,7 +740,7 @@ class Ui_AdminPanel(object):
         self.submitEmpDetails = QPushButton(self.frame_2)
         self.submitEmpDetails.setObjectName(u"submitEmpDetails")
         self.submitEmpDetails.setEnabled(True)
-        self.submitEmpDetails.setFont(font1)
+        self.submitEmpDetails.setFont(font3)
 
         self.horizontalLayout_10.addWidget(self.submitEmpDetails)
 
@@ -793,7 +810,7 @@ class Ui_AdminPanel(object):
         self.imageSelectionButton = QPushButton(self.empPhotoFrame)
         self.imageSelectionButton.setObjectName(u"imageSelectionButton")
         self.imageSelectionButton.setEnabled(False)
-        self.imageSelectionButton.setFont(font1)
+        self.imageSelectionButton.setFont(font3)
         icon9 = QIcon()
         icon9.addFile(u"../../../../Downloads/pencil.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.imageSelectionButton.setIcon(icon9)
@@ -828,7 +845,7 @@ class Ui_AdminPanel(object):
         self.RegisterEmp = QPushButton(self.AddEmpFrame)
         self.RegisterEmp.setObjectName(u"RegisterEmp")
         self.RegisterEmp.setEnabled(False)
-        self.RegisterEmp.setFont(font1)
+        self.RegisterEmp.setFont(font3)
         self.RegisterEmp.setCheckable(True)
 
         self.horizontalLayout_2.addWidget(self.RegisterEmp)
@@ -871,9 +888,9 @@ class Ui_AdminPanel(object):
         self.gridLayout_28.setObjectName(u"gridLayout_28")
         self.label_3 = QLabel(self.page_4)
         self.label_3.setObjectName(u"label_3")
-        font5 = QFont()
-        font5.setFamilies([u"Rockwell"])
-        self.label_3.setFont(font5)
+        font6 = QFont()
+        font6.setFamilies([u"Rockwell"])
+        self.label_3.setFont(font6)
 
         self.gridLayout_28.addWidget(self.label_3, 0, 0, 1, 1)
 
@@ -913,7 +930,7 @@ class Ui_AdminPanel(object):
 
         self.label_11 = QLabel(self.widget_2)
         self.label_11.setObjectName(u"label_11")
-        self.label_11.setFont(font)
+        self.label_11.setFont(font2)
 
         self.gridLayout_18.addWidget(self.label_11, 0, 0, 1, 1)
 
@@ -1094,6 +1111,9 @@ class Ui_AdminPanel(object):
         self.MainLogo.setText(QCoreApplication.translate("AdminPanel", u"@PTK", None))
         self.goToDashboardLabeled.setText(QCoreApplication.translate("AdminPanel", u"Dashboard", None))
         self.launchAnAttenderLabeled.setText(QCoreApplication.translate("AdminPanel", u"Launch Attender", None))
+#if QT_CONFIG(shortcut)
+        self.launchAnAttenderLabeled.setShortcut("")
+#endif // QT_CONFIG(shortcut)
         self.goToAddEmployeeLabeled.setText(QCoreApplication.translate("AdminPanel", u"Add Employee", None))
         self.Exit_2.setText(QCoreApplication.translate("AdminPanel", u"Logout", None))
         self.goToAttendanceLabeled.setText(QCoreApplication.translate("AdminPanel", u"Attendance", None))

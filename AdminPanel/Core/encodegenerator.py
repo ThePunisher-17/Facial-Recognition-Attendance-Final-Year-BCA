@@ -12,12 +12,15 @@ from firebase_admin import credentials
 class EncodeGenerator(object):
     def __init__(self):
 
-        path = os.getcwd()
+        self.path = os.getcwd()
 
-        cred = credentials.Certificate(
-            f"{path}\\Core\\Database Key\\serviceAccountKey.json")
+        cred = credentials.Certificate(f"{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json")
+        # cred = credentials.Certificate(f"{path}\\Database Key\\serviceAccountKey.json")
         project_id = cred.project_id
-
+        # firebase_admin.initialize_app(cred, {
+        #     "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+        #     'storageBucket': "employeeattendancerealtime.appspot.com"
+        # })
         try:
             firebase_admin.get_app(project_id)
 
@@ -30,7 +33,8 @@ class EncodeGenerator(object):
         # 1
         # importing the images of employee
 
-        folderPath = "Core\Images"
+        folderPath = "AdminPanel\Core\Images"
+        # folderPath = "Images"
         pathList = os.listdir(folderPath)
         imageList = []
         # print(pathList)
@@ -70,15 +74,13 @@ class EncodeGenerator(object):
 
         # 5 save the known employee images in encoded format
         try:
-            # print("Encoding started")
             encodeListKnown = findEncoding(imageList)
-            # This list will contain 2 lists 1 is list containing encoded photo data and 2 is list containing the respective ids
             encodeListKnownWithIds = [encodeListKnown, employeeIds]
             # print("Encoding Completed")
             # print(len(encodeListKnown))
 
             # 6 storing data in binary format in a pickle file with extension '.p'
-            file = open("EncodedFile.p", "wb")
+            file = open(f"{self.path}\\AdminPanel\\Core\\EncodedFile.p", "wb")
             # Writing data to the file
             pickle.dump(encodeListKnownWithIds, file)
             file.close()

@@ -122,12 +122,12 @@ class Ui_LoginWindow(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer_5)
 
-        self.pushButton_3 = QPushButton(self.frame_2)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setEnabled(True)
-        self.pushButton_3.setCheckable(True)
+        self.resetPassword = QPushButton(self.frame_2)
+        self.resetPassword.setObjectName(u"resetPassword")
+        self.resetPassword.setEnabled(True)
+        self.resetPassword.setCheckable(True)
 
-        self.horizontalLayout.addWidget(self.pushButton_3)
+        self.horizontalLayout.addWidget(self.resetPassword)
 
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -193,7 +193,7 @@ class Ui_LoginWindow(object):
         self.adminPassword.setPlaceholderText(QCoreApplication.translate("LoginWindow", u"Password", None))
         self.loginButton.setText(QCoreApplication.translate("LoginWindow", u"Login", None))
         self.Logo.setText("")
-        self.pushButton_3.setText(QCoreApplication.translate("LoginWindow", u"Forgotten Your Password ", None))
+        self.resetPassword.setText(QCoreApplication.translate("LoginWindow", u"Forgotten Your Password ", None))
         self.goToSignUp.setText(QCoreApplication.translate("LoginWindow", u"Don't have an account? Sign-Up", None))
     # retranslateUi
 

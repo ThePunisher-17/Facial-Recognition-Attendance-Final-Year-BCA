@@ -12,7 +12,7 @@ class DatabaseDataAdder(object):
         path = os.getcwd()
 
         cred = credentials.Certificate(
-            f"{path}\\Core\\Database Key\\serviceAccountKey.json")
+            f"{path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json")
         project_id = cred.project_id
 
         try:

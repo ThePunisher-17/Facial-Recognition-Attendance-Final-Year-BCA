@@ -44,12 +44,8 @@ class SignUpWindow(QWidget):
 
         self.ref = db.reference("administrators")
 
-        #
-
-        self.ui.adminName.setValidator(QRegularExpressionValidator(
-            QRegularExpression(r"[A-Za-z]+[\s]{1}+[A-Za-z_]{4,100}$")))
-        self.ui.adminMobileNo.setValidator(
-            QRegularExpressionValidator(QRegularExpression(r"^[0-9]{10}$")))
+        self.ui.adminName.setValidator(QRegularExpressionValidator(QRegularExpression(r"[A-Za-z]+[\s]{1}+[A-Za-z_]{4,100}$")))
+        self.ui.adminMobileNo.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{10}$")))
 
         self.changePage = False
 
@@ -57,41 +53,65 @@ class SignUpWindow(QWidget):
             collection data from admin
             Start
         '''
-        self.ui.adminSubmit.clicked.connect(self.collectData)
+        # self.ui.adminSubmit.clicked.connect(self.collectData)
         '''
             End
         '''
 
+
+    def checkDuplication(self):
+        data = db.reference("administrators").get()
+
+        for key, value in data.items():
+            if  (value["Name"] == self.ui.adminName.text()) or (value["No"] == self.ui.adminMobileNo.text()):
+                message = QMessageBox()
+                message.setWindowTitle("Error")
+                message.setText("User Already Exists")
+                message.setIcon(QMessageBox.Critical)
+                message.setStandardButtons(QMessageBox.Ok)
+                message.exec()
+                self.ui.adminMobileNo.clear()
+                self.ui.adminName.clear()
+                self.ui.adminPass1.clear()
+                self.ui.adminPass2.clear()
+                return False
+
+        return True
+
+
+
     def collectData(self):
         data = {}
-        name = self.ui.adminName.text()
-        no = self.ui.adminMobileNo.text()
-        id = name[:4]+no[-4:]
-        if self.ui.adminPass1.text() == self.ui.adminPass2.text():
-            password = self.ui.adminPass1.text()
-            rawdata = {"Name": name, "No": no, "Password": password}
-            data[id] = rawdata
 
-            for key, value in data.items():
-                self.ref.child(str(key)).set(value)
+        if self.checkDuplication() == True:
+            name = self.ui.adminName.text()
+            no = self.ui.adminMobileNo.text()
+            id = name[:4]+no[-4:]
+            if self.ui.adminPass1.text() == self.ui.adminPass2.text():
+                password = self.ui.adminPass1.text()
+                rawdata = {"Name": name, "No": no, "Password": password}
+                data[id] = rawdata
 
-            return self.launchPopUpAndLogin()
+                for key, value in data.items():
+                    self.ref.child(str(key)).set(value)
 
-        else:
-            message = QMessageBox()
-            message.setWindowTitle("Error")
-            message.setText("Password Mismatch")
-            message.setIcon(QMessageBox.Critical)
-            message.setStandardButtons(QMessageBox.Ok)
-            message.exec()
-            self.clearInp()
+                return self.launchPopUpAndLogin()
 
-            return False
+            else:
+                message = QMessageBox()
+                message.setWindowTitle("Error")
+                message.setText("Password Mismatch")
+                message.setIcon(QMessageBox.Critical)
+                message.setStandardButtons(QMessageBox.Ok)
+                message.exec()
+                self.clearInp()
+
+                return False
 
     def launchPopUpAndLogin(self):
         message = QMessageBox()
         message.setWindowTitle("Success")
-        message.setText("Sign Up Successful\nRememver: \nYour ID is first 4 latters of your name + last 4 digits of your mobile number.\n\n\nExample: \n If Name: 'Ravi' and Mobile No.: '1234567890'\n Then your ID will be: 'Ravi7890'")
+        message.setText("Sign Up Successful\nRemember: \nYour ID is first 4 letters of your name + last 4 digits of your mobile number.\n\n\nExample: \n If Name: 'Ravi' and Mobile No.: '1234567890'\n Then your ID will be: 'Ravi7890'")
         message.setIcon(QMessageBox.Information)
         message.setStandardButtons(QMessageBox.Ok)
         self.clearInp()

@@ -5,4 +5,4 @@ face-recognition==1.3.0
 opencv-python==4.8.1.78
 pandas==2.1.3
 PySide6==6.6.0
-tensorflow==2.15.0
+pyqtt==5.15.10

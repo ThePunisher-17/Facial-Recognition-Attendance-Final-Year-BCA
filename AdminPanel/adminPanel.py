@@ -1,8 +1,8 @@
 # This Python file uses the following encoding: utf-8
 import sys
 from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QMainWindow, QFileDialog, QWidget, QMessageBox
-from PySide6.QtGui import QPixmap
-from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QTimer
+from PySide6.QtGui import QPixmap, QRegularExpressionValidator
+from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QRegularExpression
 
 from firebase_admin import credentials, db
 import os
@@ -10,7 +10,7 @@ import cv2
 import time
 import pandas as pd
 import firebase_admin
-
+from getpass import getuser
 
 # from Core.main import Attender
 # from savecurrentattendance import SaveCurrentAttendance
@@ -34,24 +34,24 @@ class AdminPanel(QWidget):
 
         self.path = os.getcwd()
 
-        # self.cred = credentials.Certificate(f"{self.path}\\Core\\Database Key\\serviceAccountKey.json")
+#        self.cred = credentials.Certificate(f"{self.path}\\Core\\Database Key\\serviceAccountKey.json")
 
-        # firebase_admin.initialize_app(self.cred, {
-        #      "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-        #      'storageBucket': "employeeattendancerealtime.appspot.com"
-        # })
+#        firebase_admin.initialize_app(self.cred, {
+#              "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+#              'storageBucket': "employeeattendancerealtime.appspot.com"
+#        })
 
         cred = credentials.Certificate(
-           f'{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json')
+            f'{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json')
         project_id = cred.project_id
 
         try:
-           firebase_admin.get_app(project_id)
+            firebase_admin.get_app(project_id)
 
         except ValueError:
-           firebase_admin.initialize_app(credential=cred, name=project_id, options={
-               "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-           })
+            firebase_admin.initialize_app(credential=cred, name=project_id, options={
+                "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+            })
 
         self.QMessageBoxs = QMessageBox()
 
@@ -73,6 +73,15 @@ class AdminPanel(QWidget):
         self.ui.IconContainer.hide()
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.goToDashboard.setChecked(True)
+
+        # Setting input box rules
+        self.ui.empId.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{5}$")))
+        self.ui.empName.setValidator(QRegularExpressionValidator(QRegularExpression(r"[A-Za-z]+[\s]{1}+[A-Za-z_]+[\s]{1}+[A-Za-z_]{4,100}$")))
+        self.ui.empProfession.setValidator(QRegularExpressionValidator(QRegularExpression(r"[A-Za-z_]+[\s]{1}+[A-Za-z_]{4,30}$")))
+        self.ui.empDepartment.setValidator(QRegularExpressionValidator(QRegularExpression(r"[A-Za-z_]{4,50}$")))
+        self.ui.empJoiningYear.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{4}$")))
+        self.ui.empExperience.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{2}$")))
+
 
         if self.date == "01":
             self.itIsFirstDay()
@@ -182,17 +191,18 @@ class AdminPanel(QWidget):
         '''
 
         '''
-            submitEmpDetails Button Event 
-            used to update the details of an employee
+            Setting values for the the employee Details 
             Start
         '''
+
         self.ui.submitEmpDetails.clicked.connect(
-            lambda: self.updateEmpDetails()
+            lambda: self.setData()
         )
 
         '''
             End
         '''
+
 
         '''
             confirmRegistration Frame show and hide logic Event
@@ -286,9 +296,6 @@ class AdminPanel(QWidget):
 
             self.ui.attendanceTableDetailed.verticalHeader().setVisible(False)
 
-            table_width = self.ui.attendanceTableDetailed.horizontalHeader().length()
-            table_height = self.ui.attendanceTableDetailed.verticalHeader().length()
-
         self.ui.attendanceTableDetailed.show()
 
     def thisMonthAttendanceTableShow(self):
@@ -320,33 +327,104 @@ class AdminPanel(QWidget):
 
             self.ui.thisMonthAttendance.verticalHeader().setVisible(False)
 
-            table_width = self.ui.thisMonthAttendance.horizontalHeader().length()
-            table_height = self.ui.thisMonthAttendance.verticalHeader().length()
+    def setData(self):
+        
+        self.id = self.ui.empId.text()
+        self.name = self.ui.empName.text()
+        self.profession = self.ui.empProfession.text()
+        self.department = self.ui.empDepartment.text()
+        self.joiningYear = self.ui.empJoiningYear.text()
+        self.experience = self.ui.empExperience.text()
+
+        if len(self.id) == 0 or len(self.name) == 0 or len(self.profession) == 0 or len(self.department) == 0 or len(self.joiningYear) == 0 or len(self.experience) == 0 :
+            message = QMessageBox()
+            message.setWindowTitle("Failed")
+            message.setText("Please fill all the fields")
+            message.exec()
+            self.ui.empId.setText("")
+            self.ui.empName.setText("")
+            self.ui.empProfession.setText("")
+            self.ui.empDepartment.setText("")
+            self.ui.empJoiningYear.setText("")
+            self.ui.empExperience.setText("")
+            self.ui.empName.setFocus()
+            return 
+        
+        if len(self.id) < 5:
+            message = QMessageBox()
+            message.setWindowTitle("Failed")
+            message.setText("Employee ID must have at 5 characters")
+            message.setStandardButtons(QMessageBox.Ok)
+            message.setIcon(QMessageBox.Warning)
+            message.exec()
+            self.ui.empId.setText("")
+            self.ui.empName.setText("")
+            self.ui.empProfession.setText("")
+            self.ui.empDepartment.setText("")
+            self.ui.empJoiningYear.setText("")
+            self.ui.empExperience.setText("")
+            self.ui.empId.setFocus()
+            return
+        if len(self.ui.empExperience.text()) < 2:
+            message = QMessageBox()
+            message.setWindowTitle("Failed")
+            message.setText("Employee Experience must have at 2 characters")
+            message.setStandardButtons(QMessageBox.Ok)
+            message.setIcon(QMessageBox.Warning)
+            message.exec()
+            self.ui.empExperience.setText("")
+            self.ui.empExperience.setFocus()
+            return
+        
+
+        
 
     def updateEmpDetails(self):
         dataAdder = DatabaseDataAdder()
         empIdAndData = {}
 
-        self.id = self.ui.empId.text()
-        details = {
-            "Name": self.ui.empName.text(),
-            "Profession": self.ui.empProfession.text(),
-            "Department": self.ui.empDepartment.text(),
-            "Starting_Year": self.ui.empJoiningYear.text(),
-            "Experience": self.ui.empExperience.text(),
-            "total_attendance": 0,
-            "last_attendance_time": "2023-09-14 20:00:00"
-        }
-        # Adding Details of employee
-        empIdAndData[self.id] = details
 
-        # creating Backup
-        with open(fr"{self.path}/Core/data.txt", "a") as f:
-            f.write(f"{empIdAndData}\n")
+        if len(self.ui.empName.text()) == 0 and len(self.ui.empProfession.text()) == 0 and len(self.ui.empDepartment.text()) == 0 and len(self.ui.empJoiningYear.text()) == 0 and len(self.ui.empExperience.text()) == 0 :
+            return False
+        else:
+            details = {
+                "Name": self.ui.empName.text(),
+                "Profession": self.ui.empProfession.text(),
+                "Department": self.ui.empDepartment.text(),
+                "Starting_Year": self.ui.empJoiningYear.text(),
+                "Experience": self.ui.empExperience.text(),
+                "total_attendance": 0,
+                "Last_attendance_time": "2023-09-14 20:00:00"
+            }
+            # Adding Details of employee
+            empIdAndData[self.id] = details
 
-        # Uploading to Database
-        dataAdder.send_data(empIdAndData)
-        self.ui.totalEmpValue.setText(str(len(self.db_ref.get())))
+            # Uploading to Database
+            data = self.db_ref.get()
+
+            for key, value in data.items():
+                if key == self.id:
+                    message = QMessageBox()
+                    message.setWindowTitle("Failed")
+                    message.setText("Employee Already Exists")
+                    message.exec()
+                    self.ui.empId.setText("")
+                    self.ui.empName.setText("")
+                    self.ui.empProfession.setText("")
+                    self.ui.empDepartment.setText("")
+                    self.ui.empJoiningYear.setText("")
+                    self.ui.empExperience.setText("")
+                    self.ui.empId.setFocus()
+                    return False
+
+            dataAdder.send_data(empIdAndData)
+            self.ui.totalEmpValue.setText(str(len(self.db_ref.get())))
+
+            # Opening and saving the image in our images folder
+            QPixmap(self.image_path).save(f"{self.path}\\AdminPanel\\Core\\Images\\{self.id}.jpeg")
+            # Updating the images of employees
+            EncodeGenerator()
+            return True
 
     def openAndSaveImage(self):
         self.image_path, _ = QFileDialog.getOpenFileName(
@@ -357,28 +435,31 @@ class AdminPanel(QWidget):
             img = cv2.resize(img, (216, 216))
             cv2.imwrite(f"{self.image_path}", img)
 
-            # Opening and saving the image in our images folder
             self.ui.imageFrame.setPixmap(QPixmap(self.image_path))
-            QPixmap(self.image_path).save(
-                f"{self.path}\\Core\\Images\\{self.id}.jpeg")
-            # Updating the images of employees
-        EncodeGenerator()
+            
+            
+        
 
     def confirmEmployeeRegistration(self):
-        self.QMessageBoxs.setWindowTitle("Pop Up")
-        self.QMessageBoxs.setText("Employee Registered")
-        self.QMessageBoxs.setStandardButtons(QMessageBox.Ok)
-        self.QMessageBoxs.show()
-        self.ui.empId.setText("")
-        self.ui.empName.setText("")
-        self.ui.empProfession.setText("")
-        self.ui.empDepartment.setText("")
-        self.ui.empJoiningYear.setText("")
-        self.ui.empExperience.setText("")
-        self.ui.imageFrame.setPixmap(QPixmap("icons\person Icon.ico"))
-        self.ui.imageFrame.setScaledContents(True)
-        self.ui.imageSelectionButton.setEnabled(False)
-        self.ui.RegisterEmp.setEnabled(False)
+
+        if self.updateEmpDetails() == True:
+            self.QMessageBoxs.setWindowTitle("Pop Up")
+            self.QMessageBoxs.setText("Employee Registered")
+            self.QMessageBoxs.setStandardButtons(QMessageBox.Ok)
+            self.QMessageBoxs.show()
+            self.ui.empId.setText("")
+            self.ui.empName.setText("")
+            self.ui.empProfession.setText("")
+            self.ui.empDepartment.setText("")
+            self.ui.empJoiningYear.setText("")
+            self.ui.empExperience.setText("")
+            self.ui.imageFrame.setPixmap(QPixmap("icons\person Icon.ico"))
+            self.ui.imageFrame.setScaledContents(True)
+            self.ui.imageSelectionButton.setEnabled(False)
+            self.ui.RegisterEmp.setEnabled(False)
+        else:
+            self.ui.imageFrame.setPixmap(QPixmap("icons\person Icon.ico"))
+
 
     def downloadCurrentAttendanceClose(self):
         message = QMessageBox()
@@ -458,7 +539,7 @@ class AdminPanel(QWidget):
         message.exec()
 
         df.to_excel(
-            f"C:\\Users\\prati\\Downloads\\report_on_{time.strftime('%d-%m-%Y')}.xlsx")
+            f"C:\\Users\\{getuser()}\\Downloads\\report_on_{time.strftime('%d-%m-%Y')}.xlsx")
 
     def swapMonths(self, month_list, currentMonth):
         itr = (13-currentMonth)

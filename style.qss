@@ -66,7 +66,7 @@
         color: rgba(250, 250, 250, 0.5);
     }
 
-    QPushButton#pushButton_3,
+    QPushButton#resetPassword,
     #goToSignUp {
         border-radius: 30px;
         background-color: rgba(0, 0, 0, .5);
@@ -390,3 +390,36 @@
   QMainWindow#Project{
     background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.67 #5E17EB, stop:1 #5E17EB);
   }
+
+
+
+  /* Reset Password Page */
+
+  QFrame#coverFrameReset1{
+    background-color: rgba(17, 57, 57, .6);
+    border-radius: 10%;
+    border-radius: 40px;
+}
+QFrame#coverFrameReset2{
+    background-color: rgba(17, 57, 57, .6);
+    border-radius: 10%;
+    border-radius: 40px;
+}
+
+QFrame#MidFrameReset1{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
+    border-radius: 30px
+}
+QFrame#MidFrameReset2{
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
+    border-radius: 30px
+}
+
+QFrame#ResetFrameReset1{
+    background-color: rgba(17, 57, 57, .6);
+    border-radius: 20%;
+}
+QFrame#ResetFrameReset2{
+    background-color: rgba(17, 57, 57, .6);
+    border-radius: 20%;
+}

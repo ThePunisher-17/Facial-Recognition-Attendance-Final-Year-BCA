@@ -18,6 +18,7 @@ import os
 from LoginWindow.ui_form import Ui_LoginWindow
 
 class LoginWindow(QWidget):
+    a = 0
     def __init__(self, parent=None):
         super().__init__(parent)
         self.ui = Ui_LoginWindow()
@@ -47,23 +48,31 @@ class LoginWindow(QWidget):
 
         self.ref = db.reference("administrators/").get()
 
-        self.regex = QRegularExpression(r"^[A-Za-z][A-Za-z0-9_!@#$%-]{4,40}$")
-        self.validator = QRegularExpressionValidator(self.regex)
 
         self.ui.adminId.setValidator(QRegularExpressionValidator(
-            QRegularExpression(r"^[A-Za-z][A-Za-z0-9_]{4,8}$")))
+            QRegularExpression(r"^[A-Za-z]{4}+[0-9_]{4}$")))
         self.ui.adminPassword.setValidator(QRegularExpressionValidator(
             QRegularExpression(r"^[A-Za-z][A-Za-z0-9_!@#$%-]{4,40}$")))
 
-        self.ui.loginButton.clicked.connect(lambda: self.loginVerify())
+        # self.ui.loginButton.toggled.connect(lambda: self.loginVerify())
 
     def getAdminData(self):
-
+        if self.ui.adminId.text() == "" and self.ui.adminPassword.text() == "":
+            if LoginWindow.a == 0:
+                message = QMessageBox()
+                message.setWindowTitle("Failed")
+                message.setText("Please fill all the fields")
+                message.exec()
+                LoginWindow.a = 1
+                return 0
+        
         self.Id = self.ui.adminId.text()
         self.password = self.ui.adminPassword.text()
 
     def loginVerify(self):
-        self.getAdminData()
+        if self.getAdminData() == 0:
+            return
+
         self.ref = db.reference("administrators/").get()
 
         flag = 0
@@ -77,6 +86,11 @@ class LoginWindow(QWidget):
                 break
 
         if flag == 1:
+            self.resetInputs()
+            message = QMessageBox()
+            message.setWindowTitle("Success")
+            message.setText("Login Successful")
+            message.exec()
             return True
         else:
             message = QMessageBox()

@@ -31,6 +31,12 @@
    </property>
    <item row="0" column="1" rowspan="2">
     <widget class="QWidget" name="IconAndNameContainer" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <property name="leftMargin">
        <number>0</number>
@@ -49,12 +55,22 @@
       </property>
       <item row="0" column="0">
        <widget class="QPushButton" name="MainLogo">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>16</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>@PTK</string>
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>icons/favicon_io/favicon.ico</normaloff>icons/favicon_io/favicon.ico</iconset>
+          <normaloff>icons/favicon_io/favicon.ico</normaloff>
+          <disabledoff>icons/favicon_io/favicon.ico</disabledoff>icons/favicon_io/favicon.ico</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -66,6 +82,12 @@
       </item>
       <item row="1" column="0">
        <widget class="QPushButton" name="goToDashboardLabeled">
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Dashboard</string>
         </property>
@@ -86,6 +108,12 @@
         <property name="enabled">
          <bool>true</bool>
         </property>
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Launch Attender</string>
         </property>
@@ -99,6 +127,9 @@
           <height>25</height>
          </size>
         </property>
+        <property name="shortcut">
+         <string/>
+        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
@@ -106,6 +137,12 @@
       </item>
       <item row="3" column="0">
        <widget class="QPushButton" name="goToAddEmployeeLabeled">
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Add Employee</string>
         </property>
@@ -123,6 +160,15 @@
       </item>
       <item row="8" column="0">
        <widget class="QPushButton" name="Exit_2">
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>true</bool>
+        </property>
         <property name="text">
          <string>Logout</string>
         </property>
@@ -140,6 +186,12 @@
       </item>
       <item row="5" column="0">
        <widget class="QPushButton" name="goToAttendanceLabeled">
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Attendance</string>
         </property>
@@ -157,6 +209,12 @@
       </item>
       <item row="6" column="0">
        <widget class="QPushButton" name="goToReportsLabeled">
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Reports</string>
         </property>
@@ -174,6 +232,12 @@
       </item>
       <item row="2" column="0">
        <widget class="QPushButton" name="goToListOfEmployeeLabeled">
+        <property name="font">
+         <font>
+          <family>Rockwell</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Employee List</string>
         </property>
@@ -400,12 +464,16 @@
       </item>
       <item row="0" column="0">
        <widget class="QPushButton" name="IconLogo">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>icons/favicon_io/favicon.ico</normaloff>icons/favicon_io/favicon.ico</iconset>
+          <normaloff>icons/favicon_io/favicon.ico</normaloff>
+          <disabledoff>icons/favicon_io/favicon.ico</disabledoff>icons/favicon_io/favicon.ico</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -880,7 +948,7 @@
       </palette>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QGridLayout" name="gridLayout_23">

@@ -1,12 +1,13 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QPoint
 
 from AdminPanel.adminpanel import AdminPanel
 from LoginWindow.loginwindow import LoginWindow
 from SignUpWindow.signupwindow import SignUpWindow
+from ResetPassword.resetpassword import ResetPassword
 
 import firebase_admin
 from firebase_admin import credentials, db
@@ -35,12 +36,14 @@ class Project(QMainWindow):
         self.signup = SignUpWindow()
         self.login = LoginWindow()
         self.admin = AdminPanel()
+        self.resetpassword = ResetPassword()
 
         self.ui.stackedWidget.addWidget(self.signup)
         self.ui.stackedWidget.addWidget(self.login)
         self.ui.stackedWidget.addWidget(self.admin)
+        self.ui.stackedWidget.addWidget(self.resetpassword)
 
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.stackedWidget.setCurrentIndex(1)
 
         # Signup page actions
         self.signup.ui.adminSubmit.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(
@@ -49,15 +52,23 @@ class Project(QMainWindow):
             lambda: self.ui.stackedWidget.setCurrentIndex(1))
 
         # Login page actions
-        self.login.ui.loginButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(
-            2) if self.login.loginVerify() else self.ui.stackedWidget.setCurrentIndex(1))
+        self.login.ui.loginButton.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(2) if self.login.loginVerify() else self.ui.stackedWidget.setCurrentIndex(1))
         self.login.ui.goToSignUp.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentIndex(0))
+        
+        self.login.ui.resetPassword.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentIndex(3))
 
         # Admin panel actions
         self.admin.ui.Exit.clicked.connect(
-            lambda: self.ui.stackedWidget.setCurrentIndex(1))
+            lambda: self.ui.stackedWidget.setCurrentIndex(1) if (QMessageBox.warning(self, "warning", "Are you sure you want to exit?", QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes) else self.ui.stackedWidget.setCurrentIndex(2))
+            
         self.admin.ui.Exit_2.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentIndex(1) if (QMessageBox.warning(self, "warning", "Are you sure you want to exit?", QMessageBox.Yes | QMessageBox.No) == QMessageBox.Yes) else self.ui.stackedWidget.setCurrentIndex(2))
+        
+        
+        #Forgotten Password
+        self.resetpassword.ui.ReturnToLogin.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentIndex(1))
 
 

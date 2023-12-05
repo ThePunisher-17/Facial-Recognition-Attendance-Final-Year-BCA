@@ -96,10 +96,10 @@
 	
 	/*= Entire Window Style Start
 	==================================================== */
-	QWidget#AdminPanel{
+	/* QWidget#AdminPanel{
 		background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6 , stop:0.66 #5E17EB, stop:1 #5E17EB);
 		
-	}
+	} */
 	/*= END
 	==================================================== */
 	
@@ -108,7 +108,8 @@
 	==================================================== */
 	/* style for widget */
 	#IconAndNameContainer {
-		background: rgba(17, 57, 57, 0.4);
+		/* background: rgba(17, 57, 57, 0.4); */
+		background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6 , stop:0.66 #5E17EB, stop:1 #5E17EB);
 		border-right: 1px solid #b0b0b0;
 	}
 	
@@ -118,7 +119,7 @@
 		border-radius: 3px;
 		text-align: left;
 		padding: 8px 0 8px 15px;
-		color: #788596;
+		color: #000000;
 	}
 	
 	#IconAndNameContainer QPushButton:hover {
@@ -130,10 +131,10 @@
 	}
 	
 	/* style for logo image */
-	#IconAndNameContainer MainLogo {
+	#IconAndNameContainer#MainLogo {
 		padding: 5px;
 		color: #fff;
-		text-align: center;
+		align-content: center;
 	}
 	
 	/*= END
@@ -143,8 +144,9 @@
 	==================================================== */
 	/* style for widget */
 	#IconContainer {
-		background: rgba(17, 57, 57, 0.4);
+		/* background: rgba(17, 57, 57, 0.4); */
 		border-right: 1px solid #b0b0b0;
+		background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6 , stop:0.66 #5E17EB, stop:1 #5E17EB);
 	}
 	
     /* style for QPushButton and QLabel */
