@@ -56,8 +56,8 @@ for i in range(-1, userSelection -1, -1):
 
     for month in months:
         data = {}
-        for i in range(10):
-            id = 101 + i
+        for i in range(7,10):
+            id = 1000 + i
             values = {"Name" : f"Pratik{i}", "Department": "AI","Profession": "AI Engineer", "Starting_Year": "2020", "total_attendance": 11+i, "Last_Attendance_time": "2023-01-01 00:00:00", "Experience": "0"}
             data[id] = values
 

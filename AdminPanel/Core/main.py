@@ -5,6 +5,7 @@ import numpy as np
 import face_recognition
 import cvzone
 import time
+from datetime import datetime
 
 import firebase_admin
 from firebase_admin import storage
@@ -21,18 +22,24 @@ class Attender(object):
         super().__init__()
         self.path = os.getcwd()
 
-        cred = credentials.Certificate(
-            f"{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json")
-        project_id = cred.project_id
+        cred = credentials.Certificate(f"{self.path}\\AdminPanel\\Core\\Database key\\serviceAccountKey.json")
+        firebase_admin.initialize_app(cred, {
+            "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+            'storageBucket': "employeeattendancerealtime.appspot.com"
+        })
 
-        try:
-            firebase_admin.get_app(project_id)
+        # cred = credentials.Certificate(
+            # f"{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json")
+        # project_id = cred.project_id
 
-        except ValueError:
-            firebase_admin.initialize_app(credential=cred, name=project_id, options={
-                "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-                'storageBucket': "employeeattendancerealtime.appspot.com"
-            })
+        # try:
+        #     firebase_admin.get_app(project_id)
+
+        # except ValueError:
+        #     firebase_admin.initialize_app(credential=cred, name=project_id, options={
+        #         "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+        #         'storageBucket': "employeeattendancerealtime.appspot.com"
+        #     })
 
         bucket = storage.bucket()
 
@@ -57,7 +64,7 @@ class Attender(object):
 
         # 4
         # importing the modes in a list
-        folderModePath = f"{self.path}\\AdminPanel\\Core\Resources\Modes"
+        folderModePath = fr"{self.path}\AdminPanel\Core\Resources\Modes"
         modePathList = os.listdir(folderModePath)
         imageModeList = []
 
@@ -107,86 +114,119 @@ class Attender(object):
             imgBackground[44: 44+633, 808: 808+414] = imageModeList[modeType]
 
         # 10 now we've current frame encoding and registered encoding we're going to compare them with each other
+            if faceCurrentFrame:
+                for encodFace, faceLocation in zip(encodeCurrentFrame, faceCurrentFrame):
+                    matches = face_recognition.compare_faces(
+                        encodeListKnown, encodFace)
+                    faceDistance = face_recognition.face_distance(
+                        encodeListKnown, encodFace)
+                    # print("matches", matches)
+                    # print("Face Distance", faceDistance)
+            # 11 now we're finding the index of the closest match
+                    matchIndex = np.argmin(faceDistance)
+                    # print("Match Index", matchIndex)
 
-            for encodFace, faceLocation in zip(encodeCurrentFrame, faceCurrentFrame):
-                matches = face_recognition.compare_faces(
-                    encodeListKnown, encodFace)
-                faceDistance = face_recognition.face_distance(
-                    encodeListKnown, encodFace)
-                # print("matches", matches)
-                # print("Face Distance", faceDistance)
-        # 11 now we're finding the index of the closest match
-                matchIndex = np.argmin(faceDistance)
-                # print("Match Index", matchIndex)
+            # 12 now we're getting the name of the closest match
+                    if matches[matchIndex]:
+                        # showing the ids of employee
+                        # name = employeeIds[matchIndex].upper()
+                        # print(name)
+                        # this code will draw a rectangle around the face
+                        y1, x2, y2, x1 = faceLocation
+                        # as we've reduced the size of image we've to scale it again
+                        y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
+                        bbox = 55+x1, 162+y1, x2-x1, y2-y1  # these're the coordinates of the rectangle
 
-        # 12 now we're getting the name of the closest match
-                if matches[matchIndex]:
-                    # showing the ids of employee
-                    name = employeeIds[matchIndex].upper()
-                    # print(name)
-                    # this code will draw a rectangle around the face
-                    y1, x2, y2, x1 = faceLocation
-                    # as we've reduced the size of image we've to scale it again
-                    y1, x2, y2, x1 = y1*4, x2*4, y2*4, x1*4
-                    bbox = 55+x1, 162+y1, x2-x1, y2-y1  # these're the coordinates of the rectangle
+                        imgBackground = cvzone.cornerRect(
+                            imgBackground, bbox=bbox, rt=0)
 
-                    imgBackground = cvzone.cornerRect(
-                        imgBackground, bbox=bbox, rt=0)
+                        id = employeeIds[matchIndex]
+                        if counter == 0:
+                            counter = 1
+                            modeType = 1
 
-                    id = employeeIds[matchIndex]
-                    if counter == 0:
-                        counter = 1
-                        modeType = 1
+                if counter != 0:
+                    if counter == 1:
+                        # here we're getting data about the employee
+                        employeeInfo = db.reference(
+                            f"Employee/{self.year}/{self.monthList[int(self.month)-1]}/{id}").get()
 
-            if counter != 0:
-                if counter == 1:
-                    # here we're getting data about the employee
-                    employeeInfo = db.reference(
-                        f"Employee/{self.year}/{self.monthList[int(self.month)-2]}/{id}").get()
-                    # print(employeeInfo)
-                    # here we're getting image of employee from database
-                    blob = bucket.blob(f"Core\Images/{id}.jpeg")
-                    imageArray = np.frombuffer(
-                        blob.download_as_string(), np.uint8)
-                    imageEmployee = cv2.imdecode(imageArray, cv2.COLOR_BGR2RGB)
-        # 14
-                    # now we're going to update the database with the new attendance
-                    ref = db.reference(
-                        f"Employee/{self.year}/{self.monthList[int(self.month)-2]}/{id}")
-                    employeeInfo["total_attendance"] += 1
-                    ref.child("total_attendance").set(
-                        employeeInfo["total_attendance"])
+                        # print(employeeInfo)
+                        # here we're getting image of employee from database
+                        blob = bucket.blob(
+                            f"AdminPanel\Core\Images/{id}.jpeg")
+                    
+                        imageArray = np.frombuffer(blob.download_as_string(), np.uint8)
+                        imageEmployee = cv2.imdecode(imageArray, cv2.COLOR_BGR2RGB)
 
-                # The following code is used to display the employee details
-                cv2.putText(imgBackground, str(id), (1006, 493),
-                            cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
-                cv2.putText(imgBackground, str(employeeInfo["total_attendance"]), (
-                    881, 125), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
-                cv2.putText(imgBackground, str(employeeInfo["Profession"]), (
-                    1006, 550), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
-                cv2.putText(imgBackground, str(employeeInfo["Department"]), (
-                    910, 625), cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
-                cv2.putText(imgBackground, str(employeeInfo["Starting_Year"]), (
-                    1125, 625), cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
-                cv2.putText(imgBackground, str(employeeInfo["Experience"]), (
-                    1025, 625), cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
+                        # Update data of attendance
+                        datetimeObject = datetime.strptime(employeeInfo['Last_attendance_time'],
+                                                        "%Y-%m-%d %H:%M:%S")
+                        secondsElapsed = (datetime.now() - datetimeObject).total_seconds()
+                        print(secondsElapsed)
+                        if secondsElapsed > 30:
+                            ref = db.reference(f'Students/{id}')
+                            employeeInfo['total_attendance'] += 1
+                            ref.child('total_attendance').set(employeeInfo['total_attendance'])
+                            ref.child('Last_Attendance_time').set(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                        else:
+                            modeType = 3
+                            counter = 0
+                            imgBackground[44:44 + 633, 808:808 + 414] = imageModeList[modeType]
 
-                # The following line returns the width and height of the text which is used to set position of text
-                (w, h), _ = cv2.getTextSize(
-                    employeeInfo["Name"], cv2.FONT_HERSHEY_COMPLEX, 1, 1)
-                offset = (414-w)//2
-                cv2.putText(imgBackground, str(
-                    employeeInfo["Name"]), (808+offset, 445), cv2.FONT_HERSHEY_COMPLEX, 1, (250, 250, 250), 1)
+                    if modeType != 3:
 
-                # Putting the image of employee on the background
-                imgBackground[175: 175+216, 909: 909+216] = imageEmployee
+                        if 10 < counter < 20:
+                            modeType = 2
 
-                counter += 1
+                        imgBackground[44:44 + 633, 808:808 + 414] = imageModeList[modeType]
 
-            # cv2.imshow("WebCam", img)
 
-            cv2.imshow("Background", imgBackground)
-            cv2.waitKey(1)
+            # 14
+                        # now we're going to update the database with the new attendance
+                        ref = db.reference(
+                            f"Employee/{self.year}/{self.monthList[int(self.month)-1]}/{id}")
+                        # print(employeeInfo)
+                        employeeInfo["total_attendance"] += 1
+                        ref.child("total_attendance").set(employeeInfo["total_attendance"])
+                        
+                    if counter <= 10:
+                        cv2.putText(imgBackground, str(employeeInfo['total_attendance']), (861, 125),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 1)
+                        cv2.putText(imgBackground, str(employeeInfo['Profession']), (1006, 550),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
+                        cv2.putText(imgBackground, str(id), (1006, 493),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 255, 255), 1)
+                        cv2.putText(imgBackground, str(employeeInfo['Department']), (910, 625),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
+                        cv2.putText(imgBackground, str(employeeInfo['Experience']), (1025, 625),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
+                        cv2.putText(imgBackground, str(employeeInfo['Starting_Year']), (1125, 625),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
+
+                        (w, h), _ = cv2.getTextSize(employeeInfo['Name'], cv2.FONT_HERSHEY_COMPLEX, 1, 1)
+                        offset = (414 - w) // 2
+                        cv2.putText(imgBackground, str(employeeInfo['Name']), (808 + offset, 445),
+                                                    cv2.FONT_HERSHEY_COMPLEX, 1, (50, 50, 50), 1)
+
+                        imgBackground[175:175 + 216, 909:909 + 216] = imageEmployee
+
+                        counter += 1
+
+                        if counter >= 20:
+                            counter = 0
+                            modeType = 0
+                            employeeInfo = []
+                            imageEmployee = []
+                            imgBackground[44:44 + 633, 808:808 + 414] = imageModeList[modeType]
+                    else:
+                        modeType = 0
+                        counter = 0
+
+                # cv2.imshow("WebCam", img)
+            else:
+                cv2.imshow("Background", imgBackground)
+                cv2.waitKey(1)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -196,4 +236,4 @@ class Attender(object):
 
 
 if __name__ == "__main__":
-    Attender().run()
+    Attender()

@@ -18,7 +18,7 @@ from getpass import getuser
 # from Core.encodegenerator import EncodeGenerator
 # from ui_form import Ui_AdminPanel
 
-from AdminPanel.Core.main import Attender
+from AdminPanel.Core.main1 import Attender
 from AdminPanel.savecurrentattendance import SaveCurrentAttendance
 from AdminPanel.Core.databasedataadder import DatabaseDataAdder
 from AdminPanel.Core.encodegenerator import EncodeGenerator
@@ -83,7 +83,7 @@ class AdminPanel(QWidget):
         self.ui.empExperience.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{2}$")))
 
 
-        if self.date == "01":
+        if self.date == "03":
             self.itIsFirstDay()
 
         #
@@ -251,8 +251,12 @@ class AdminPanel(QWidget):
 
         data = self.db_ref.get()
         # Set the number of rows and columns
+
+        datakey = data.keys()
+
+
         self.ui.attendanceTableDetailed.setRowCount(len(data))
-        self.ui.attendanceTableDetailed.setColumnCount(len(data["101"])-1)
+        self.ui.attendanceTableDetailed.setColumnCount(7)
 
         # Set the headers
         self.ui.attendanceTableDetailed.setHorizontalHeaderLabels(
@@ -472,7 +476,7 @@ class AdminPanel(QWidget):
     def itIsFirstDay(self):
 
         data = db.reference(
-            f"Employee/{self.year}/{self.monthList[int(self.month)-2]}/").get()
+            f"Employee/{int(self.year)-1}/{self.monthList[int(self.month)-2]}/").get()
 
         for key, value in data.items():
             data[key]["total_attendance"] = 0
@@ -480,6 +484,12 @@ class AdminPanel(QWidget):
         if self.monthList[int(self.month)-2] != "December":
             ref = db.reference(
                 f"Employee/{self.year}/{self.monthList[int(self.month)-1]}")
+            for key, value in data.items():
+                ref.child(str(key)).set(value)
+        
+        elif self.monthList[int(self.month)-1] != "January":
+            ref = db.reference(
+                f"Employee/{int(self.year)}/January")
             for key, value in data.items():
                 ref.child(str(key)).set(value)
 
@@ -491,7 +501,7 @@ class AdminPanel(QWidget):
             ref = db.reference(
                 f"Employee/{year}/{self.monthList[int(self.month)-1]}")
 
-            for key, value in self.data1.items():
+            for key, value in data.items():
                 ref.child(str(key)).set(value)
 
     def generateReprots(self):
@@ -515,8 +525,7 @@ class AdminPanel(QWidget):
         for i in range(-1, userSelection - 1, -1):
             if sortedMonthList[i] == "December":
                 currentYear -= 1
-            data = db.reference(
-                f"Employee/{self.year}/{self.monthList[int(self.month)-2]}").get()
+            data = db.reference(f"Employee/{currentYear}/{self.monthList[int(self.month)-2]}").get()
             # print(f"{sortedMonthList[i]}_{currentYear}")
             # print("\n\n")
             ids = list(data.keys())

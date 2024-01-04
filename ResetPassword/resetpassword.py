@@ -138,10 +138,10 @@ class ResetPassword(QWidget):
                         self.ui.ReturnToLogin.click()
                         break
             else:
-                # print(f"Passwords do not match{self.ui.newPass.text()} /= {self.ui.confNewPass.text()}")
-                pass
+                QMessageBox.warning(self, "Warning", "Passwords do not match")
+
         else:
-            QMessageBox.warning(self, "Warning", "Passwords do not match")
+            QMessageBox.warning(self, "Warning", "Password length must be greater than 10")
             return 0
         
     def clears(self):

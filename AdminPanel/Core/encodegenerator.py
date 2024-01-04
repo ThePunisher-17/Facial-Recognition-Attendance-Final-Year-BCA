@@ -33,7 +33,7 @@ class EncodeGenerator(object):
         # 1
         # importing the images of employee
 
-        folderPath = "AdminPanel\Core\Images"
+        folderPath = r"AdminPanel\Core\Images"
         # folderPath = "Images"
         pathList = os.listdir(folderPath)
         imageList = []

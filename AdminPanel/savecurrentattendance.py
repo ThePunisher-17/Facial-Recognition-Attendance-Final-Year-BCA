@@ -32,7 +32,7 @@ class SaveCurrentAttendance(object):
         self.month = self.month[1]
         self.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-        print(f"Employee/{self.year}/{self.monthList[int(self.month)-1]}")
+        # print(f"Employee/{self.year}/{self.monthList[int(self.month)-1]}")
         self.db_ref = db.reference(f"Employee/{self.year}/{self.monthList[int(self.month)-1]}")
 
 

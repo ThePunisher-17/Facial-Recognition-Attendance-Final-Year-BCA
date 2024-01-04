@@ -1,4 +1,4 @@
-    /* SignUp Window */
+    SignUp Window
     #SignUpWindow {
         background-color: rgba(0, 0, 0, 0.5);
         background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.66 #5E17EB, stop:1 #5E17EB);
@@ -82,6 +82,7 @@
   ==================================================== */
     #StatusBar {
         background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
+       
     }
 
     /*= END
@@ -184,7 +185,6 @@
 	==================================================== */
     QWidget#AdminPanel {
         background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.66 #5E17EB, stop:1 #5E17EB);
-
     }
 
     /*= END
@@ -388,7 +388,9 @@
 
 
   QMainWindow#Project{
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.67 #5E17EB, stop:1 #5E17EB);
+    /* background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.67 #5E17EB, stop:1 #5E17EB); */
+    background: qconicalgradient(cx:0.5, cy:0.5, angle:30,stop:0 #000, stop:0.33 #FF5757, stop:0.67 #5271FF, stop:1 #FFDE59);
+    /* background: qradialgradient(cx:0, cy:0, radius: 1,fx:0.5, fy:0.5, stop:0 white, stop:1 green); */
   }
 
 

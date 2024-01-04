@@ -288,7 +288,7 @@ class Ui_ResetPassword(object):
         self.label_2.setText(QCoreApplication.translate("ResetPassword", u"<html><head/><body><p align=\"center\"><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Reset Password</span></p></body></html>", None))
         self.label.setText(QCoreApplication.translate("ResetPassword", u"Enter Admin ID", None))
         self.UserID.setPlaceholderText(QCoreApplication.translate("ResetPassword", u"Enter your Admin ID", None))
-        self.sendOtp.setText(QCoreApplication.translate("ResetPassword", u"Sent OTP", None))
+        self.sendOtp.setText(QCoreApplication.translate("ResetPassword", u"Generate OTP", None))
         self.label_4.setText(QCoreApplication.translate("ResetPassword", u"Enter OTP Received", None))
         self.otpBox.setPlaceholderText(QCoreApplication.translate("ResetPassword", u"OTP", None))
         self.verifyOtp.setText(QCoreApplication.translate("ResetPassword", u"Verify", None))

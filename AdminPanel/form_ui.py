@@ -383,6 +383,7 @@ class Ui_AdminPanel(object):
         self.label_14 = QLabel(self.page)
         self.label_14.setObjectName(u"label_14")
         font2 = QFont()
+        font2.setPointSize(22)
         font2.setFamilies([u"Rockwell Condensed"])
         self.label_14.setFont(font2)
 
