@@ -1,8 +1,9 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QInputDialog
 from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QPoint
+from PySide6.QtGui import QIcon
 
 from AdminPanel.adminpanel import AdminPanel
 from LoginWindow.loginwindow import LoginWindow
@@ -70,6 +71,9 @@ class Project(QMainWindow):
         #Forgotten Password
         self.resetpassword.ui.ReturnToLogin.clicked.connect(
             lambda: self.ui.stackedWidget.setCurrentIndex(1))
+
+        self.setWindowTitle("Pratik's Attender")
+        self.setWindowIcon(QIcon("icons\\favicon_io\\favicon.ico"))
 
 
 if __name__ == "__main__":

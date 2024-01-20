@@ -17,14 +17,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_AdminPanel(object):
     def setupUi(self, AdminPanel):
         if not AdminPanel.objectName():
             AdminPanel.setObjectName(u"AdminPanel")
-        AdminPanel.resize(1018, 604)
+        AdminPanel.resize(898, 604)
         self.gridLayout_4 = QGridLayout(AdminPanel)
         self.gridLayout_4.setSpacing(0)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
@@ -36,71 +37,74 @@ class Ui_AdminPanel(object):
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.MainLogo = QPushButton(self.IconAndNameContainer)
-        self.MainLogo.setObjectName(u"MainLogo")
-        self.MainLogo.setEnabled(False)
+        self.goToReportsLabeled = QPushButton(self.IconAndNameContainer)
+        self.goToReportsLabeled.setObjectName(u"goToReportsLabeled")
         font = QFont()
         font.setFamilies([u"Rockwell"])
-        font.setPointSize(16)
-        self.MainLogo.setFont(font)
+        font.setPointSize(14)
+        self.goToReportsLabeled.setFont(font)
         icon = QIcon()
-        icon.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
-        icon.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Disabled, QIcon.Off)
-        self.MainLogo.setIcon(icon)
-        self.MainLogo.setIconSize(QSize(50, 50))
+        icon.addFile(u"icons/reports.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.goToReportsLabeled.setIcon(icon)
+        self.goToReportsLabeled.setIconSize(QSize(25, 25))
 
-        self.gridLayout_2.addWidget(self.MainLogo, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.goToReportsLabeled, 6, 0, 1, 1)
 
-        self.goToDashboardLabeled = QPushButton(self.IconAndNameContainer)
-        self.goToDashboardLabeled.setObjectName(u"goToDashboardLabeled")
-        font1 = QFont()
-        font1.setFamilies([u"Rockwell"])
-        font1.setPointSize(14)
-        self.goToDashboardLabeled.setFont(font1)
+        self.Exit_2 = QPushButton(self.IconAndNameContainer)
+        self.Exit_2.setObjectName(u"Exit_2")
+        self.Exit_2.setFont(font)
+        self.Exit_2.setMouseTracking(False)
+        self.Exit_2.setLayoutDirection(Qt.LeftToRight)
+        self.Exit_2.setAutoFillBackground(True)
         icon1 = QIcon()
-        icon1.addFile(u"icons/dashboard.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.goToDashboardLabeled.setIcon(icon1)
-        self.goToDashboardLabeled.setIconSize(QSize(25, 25))
+        icon1.addFile(u"icons/exit.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.Exit_2.setIcon(icon1)
+        self.Exit_2.setIconSize(QSize(25, 25))
 
-        self.gridLayout_2.addWidget(self.goToDashboardLabeled, 1, 0, 1, 1)
-
-        self.launchAnAttenderLabeled = QPushButton(self.IconAndNameContainer)
-        self.launchAnAttenderLabeled.setObjectName(u"launchAnAttenderLabeled")
-        self.launchAnAttenderLabeled.setEnabled(True)
-        self.launchAnAttenderLabeled.setFont(font1)
-        icon2 = QIcon()
-        icon2.addFile(u"icons/attender.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.launchAnAttenderLabeled.setIcon(icon2)
-        self.launchAnAttenderLabeled.setIconSize(QSize(25, 25))
-        self.launchAnAttenderLabeled.setCheckable(True)
-
-        self.gridLayout_2.addWidget(self.launchAnAttenderLabeled, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.Exit_2, 9, 0, 1, 1)
 
         self.goToAddEmployeeLabeled = QPushButton(self.IconAndNameContainer)
         self.goToAddEmployeeLabeled.setObjectName(u"goToAddEmployeeLabeled")
-        self.goToAddEmployeeLabeled.setFont(font1)
-        icon3 = QIcon()
-        icon3.addFile(u"icons/add.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.goToAddEmployeeLabeled.setIcon(icon3)
+        self.goToAddEmployeeLabeled.setFont(font)
+        icon2 = QIcon()
+        icon2.addFile(u"icons/add.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.goToAddEmployeeLabeled.setIcon(icon2)
         self.goToAddEmployeeLabeled.setIconSize(QSize(25, 25))
 
         self.gridLayout_2.addWidget(self.goToAddEmployeeLabeled, 3, 0, 1, 1)
 
-        self.Exit_2 = QPushButton(self.IconAndNameContainer)
-        self.Exit_2.setObjectName(u"Exit_2")
-        self.Exit_2.setMouseTracking(False)
-        self.Exit_2.setLayoutDirection(Qt.LeftToRight)
-        self.Exit_2.setAutoFillBackground(True)
-        icon4 = QIcon()
-        icon4.addFile(u"icons/exit.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.Exit_2.setIcon(icon4)
-        self.Exit_2.setIconSize(QSize(25, 25))
+        self.MainLogo = QPushButton(self.IconAndNameContainer)
+        self.MainLogo.setObjectName(u"MainLogo")
+        self.MainLogo.setEnabled(False)
+        font1 = QFont()
+        font1.setFamilies([u"Rockwell"])
+        font1.setPointSize(16)
+        self.MainLogo.setFont(font1)
+        icon3 = QIcon()
+        icon3.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Disabled, QIcon.Off)
+        self.MainLogo.setIcon(icon3)
+        self.MainLogo.setIconSize(QSize(50, 50))
 
-        self.gridLayout_2.addWidget(self.Exit_2, 8, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.MainLogo, 0, 0, 1, 1)
+
+        self.goToListOfEmployeeLabeled = QPushButton(self.IconAndNameContainer)
+        self.goToListOfEmployeeLabeled.setObjectName(u"goToListOfEmployeeLabeled")
+        self.goToListOfEmployeeLabeled.setFont(font)
+        icon4 = QIcon()
+        icon4.addFile(u"icons/list.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.goToListOfEmployeeLabeled.setIcon(icon4)
+        self.goToListOfEmployeeLabeled.setIconSize(QSize(25, 25))
+
+        self.gridLayout_2.addWidget(self.goToListOfEmployeeLabeled, 2, 0, 1, 1)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_2, 8, 0, 1, 1)
 
         self.goToAttendanceLabeled = QPushButton(self.IconAndNameContainer)
         self.goToAttendanceLabeled.setObjectName(u"goToAttendanceLabeled")
-        self.goToAttendanceLabeled.setFont(font1)
+        self.goToAttendanceLabeled.setFont(font)
         icon5 = QIcon()
         icon5.addFile(u"icons/attendance.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.goToAttendanceLabeled.setIcon(icon5)
@@ -108,29 +112,37 @@ class Ui_AdminPanel(object):
 
         self.gridLayout_2.addWidget(self.goToAttendanceLabeled, 5, 0, 1, 1)
 
-        self.goToReportsLabeled = QPushButton(self.IconAndNameContainer)
-        self.goToReportsLabeled.setObjectName(u"goToReportsLabeled")
-        self.goToReportsLabeled.setFont(font1)
+        self.launchAnAttenderLabeled = QPushButton(self.IconAndNameContainer)
+        self.launchAnAttenderLabeled.setObjectName(u"launchAnAttenderLabeled")
+        self.launchAnAttenderLabeled.setEnabled(True)
+        self.launchAnAttenderLabeled.setFont(font)
         icon6 = QIcon()
-        icon6.addFile(u"icons/reports.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.goToReportsLabeled.setIcon(icon6)
-        self.goToReportsLabeled.setIconSize(QSize(25, 25))
+        icon6.addFile(u"icons/attender.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.launchAnAttenderLabeled.setIcon(icon6)
+        self.launchAnAttenderLabeled.setIconSize(QSize(25, 25))
+        self.launchAnAttenderLabeled.setCheckable(True)
 
-        self.gridLayout_2.addWidget(self.goToReportsLabeled, 6, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.launchAnAttenderLabeled, 4, 0, 1, 1)
 
-        self.goToListOfEmployeeLabeled = QPushButton(self.IconAndNameContainer)
-        self.goToListOfEmployeeLabeled.setObjectName(u"goToListOfEmployeeLabeled")
-        self.goToListOfEmployeeLabeled.setFont(font1)
+        self.goToDashboardLabeled = QPushButton(self.IconAndNameContainer)
+        self.goToDashboardLabeled.setObjectName(u"goToDashboardLabeled")
+        self.goToDashboardLabeled.setFont(font)
         icon7 = QIcon()
-        icon7.addFile(u"icons/list.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.goToListOfEmployeeLabeled.setIcon(icon7)
-        self.goToListOfEmployeeLabeled.setIconSize(QSize(25, 25))
+        icon7.addFile(u"icons/dashboard.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.goToDashboardLabeled.setIcon(icon7)
+        self.goToDashboardLabeled.setIconSize(QSize(25, 25))
 
-        self.gridLayout_2.addWidget(self.goToListOfEmployeeLabeled, 2, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.goToDashboardLabeled, 1, 0, 1, 1)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.remove_emp_label = QPushButton(self.IconAndNameContainer)
+        self.remove_emp_label.setObjectName(u"remove_emp_label")
+        self.remove_emp_label.setFont(font)
+        icon8 = QIcon()
+        icon8.addFile(u"icons/trash.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.remove_emp_label.setIcon(icon8)
+        self.remove_emp_label.setIconSize(QSize(25, 25))
 
-        self.gridLayout_2.addItem(self.verticalSpacer_2, 7, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.remove_emp_label, 7, 0, 1, 1)
 
 
         self.gridLayout_4.addWidget(self.IconAndNameContainer, 0, 1, 2, 1)
@@ -143,9 +155,9 @@ class Ui_AdminPanel(object):
         self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.menuButton = QPushButton(self.StatusBar)
         self.menuButton.setObjectName(u"menuButton")
-        icon8 = QIcon()
-        icon8.addFile(u"icons/drawer.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.menuButton.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u"icons/drawer.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.menuButton.setIcon(icon9)
         self.menuButton.setIconSize(QSize(25, 25))
         self.menuButton.setCheckable(True)
 
@@ -164,30 +176,28 @@ class Ui_AdminPanel(object):
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.launchAnAttender = QPushButton(self.IconContainer)
+        self.launchAnAttender.setObjectName(u"launchAnAttender")
+        self.launchAnAttender.setEnabled(True)
+        self.launchAnAttender.setIcon(icon6)
+        self.launchAnAttender.setIconSize(QSize(25, 25))
+        self.launchAnAttender.setCheckable(True)
 
-        self.gridLayout.addItem(self.verticalSpacer, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.launchAnAttender, 4, 0, 1, 1)
 
-        self.goToReports = QPushButton(self.IconContainer)
-        self.goToReports.setObjectName(u"goToReports")
-        self.goToReports.setIcon(icon6)
-        self.goToReports.setIconSize(QSize(25, 25))
+        self.goToAddEmployee = QPushButton(self.IconContainer)
+        self.goToAddEmployee.setObjectName(u"goToAddEmployee")
+        self.goToAddEmployee.setIcon(icon2)
+        self.goToAddEmployee.setIconSize(QSize(25, 25))
 
-        self.gridLayout.addWidget(self.goToReports, 6, 0, 1, 1)
+        self.gridLayout.addWidget(self.goToAddEmployee, 3, 0, 1, 1)
 
         self.goToDashboard = QPushButton(self.IconContainer)
         self.goToDashboard.setObjectName(u"goToDashboard")
-        self.goToDashboard.setIcon(icon1)
+        self.goToDashboard.setIcon(icon7)
         self.goToDashboard.setIconSize(QSize(30, 30))
 
         self.gridLayout.addWidget(self.goToDashboard, 1, 0, 1, 1)
-
-        self.goToListOfEmployee = QPushButton(self.IconContainer)
-        self.goToListOfEmployee.setObjectName(u"goToListOfEmployee")
-        self.goToListOfEmployee.setIcon(icon7)
-        self.goToListOfEmployee.setIconSize(QSize(25, 25))
-
-        self.gridLayout.addWidget(self.goToListOfEmployee, 2, 0, 1, 1)
 
         self.goToAttendance = QPushButton(self.IconContainer)
         self.goToAttendance.setObjectName(u"goToAttendance")
@@ -196,36 +206,45 @@ class Ui_AdminPanel(object):
 
         self.gridLayout.addWidget(self.goToAttendance, 5, 0, 1, 1)
 
-        self.goToAddEmployee = QPushButton(self.IconContainer)
-        self.goToAddEmployee.setObjectName(u"goToAddEmployee")
-        self.goToAddEmployee.setIcon(icon3)
-        self.goToAddEmployee.setIconSize(QSize(25, 25))
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout.addWidget(self.goToAddEmployee, 3, 0, 1, 1)
+        self.gridLayout.addItem(self.verticalSpacer, 8, 0, 1, 1)
 
-        self.launchAnAttender = QPushButton(self.IconContainer)
-        self.launchAnAttender.setObjectName(u"launchAnAttender")
-        self.launchAnAttender.setEnabled(True)
-        self.launchAnAttender.setIcon(icon2)
-        self.launchAnAttender.setIconSize(QSize(25, 25))
-        self.launchAnAttender.setCheckable(True)
+        self.Exit = QPushButton(self.IconContainer)
+        self.Exit.setObjectName(u"Exit")
+        self.Exit.setIcon(icon1)
+        self.Exit.setIconSize(QSize(25, 25))
 
-        self.gridLayout.addWidget(self.launchAnAttender, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.Exit, 9, 0, 1, 1)
+
+        self.goToReports = QPushButton(self.IconContainer)
+        self.goToReports.setObjectName(u"goToReports")
+        self.goToReports.setIcon(icon)
+        self.goToReports.setIconSize(QSize(25, 25))
+
+        self.gridLayout.addWidget(self.goToReports, 6, 0, 1, 1)
 
         self.IconLogo = QPushButton(self.IconContainer)
         self.IconLogo.setObjectName(u"IconLogo")
         self.IconLogo.setEnabled(False)
-        self.IconLogo.setIcon(icon)
+        self.IconLogo.setIcon(icon3)
         self.IconLogo.setIconSize(QSize(25, 30))
 
         self.gridLayout.addWidget(self.IconLogo, 0, 0, 1, 1)
 
-        self.Exit = QPushButton(self.IconContainer)
-        self.Exit.setObjectName(u"Exit")
-        self.Exit.setIcon(icon4)
-        self.Exit.setIconSize(QSize(25, 25))
+        self.goToListOfEmployee = QPushButton(self.IconContainer)
+        self.goToListOfEmployee.setObjectName(u"goToListOfEmployee")
+        self.goToListOfEmployee.setIcon(icon4)
+        self.goToListOfEmployee.setIconSize(QSize(25, 25))
 
-        self.gridLayout.addWidget(self.Exit, 8, 0, 1, 1)
+        self.gridLayout.addWidget(self.goToListOfEmployee, 2, 0, 1, 1)
+
+        self.remove_emp = QPushButton(self.IconContainer)
+        self.remove_emp.setObjectName(u"remove_emp")
+        self.remove_emp.setIcon(icon8)
+        self.remove_emp.setIconSize(QSize(25, 25))
+
+        self.gridLayout.addWidget(self.remove_emp, 7, 0, 1, 1)
 
 
         self.gridLayout_4.addWidget(self.IconContainer, 0, 0, 2, 1)
@@ -306,17 +325,13 @@ class Ui_AdminPanel(object):
         self.page.setObjectName(u"page")
         self.gridLayout_23 = QGridLayout(self.page)
         self.gridLayout_23.setObjectName(u"gridLayout_23")
-        self.label_14 = QLabel(self.page)
-        self.label_14.setObjectName(u"label_14")
+        self.dashboardLabel = QLabel(self.page)
+        self.dashboardLabel.setObjectName(u"dashboardLabel")
         font2 = QFont()
         font2.setFamilies([u"Rockwell Condensed"])
-        self.label_14.setFont(font2)
+        self.dashboardLabel.setFont(font2)
 
-        self.gridLayout_23.addWidget(self.label_14, 0, 0, 1, 1)
-
-        self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_23.addItem(self.horizontalSpacer_31, 1, 1, 1, 1)
+        self.gridLayout_23.addWidget(self.dashboardLabel, 0, 0, 1, 1)
 
         self.frame_9 = QFrame(self.page)
         self.frame_9.setObjectName(u"frame_9")
@@ -367,7 +382,7 @@ class Ui_AdminPanel(object):
         self.gridLayout_19.setObjectName(u"gridLayout_19")
         self.totalEmpValue = QLabel(self.frame_10)
         self.totalEmpValue.setObjectName(u"totalEmpValue")
-        self.totalEmpValue.setFont(font1)
+        self.totalEmpValue.setFont(font)
         self.totalEmpValue.setIndent(0)
 
         self.gridLayout_19.addWidget(self.totalEmpValue, 0, 1, 1, 1)
@@ -425,7 +440,7 @@ class Ui_AdminPanel(object):
 
         self.totalAdminValue = QLabel(self.frame_11)
         self.totalAdminValue.setObjectName(u"totalAdminValue")
-        self.totalAdminValue.setFont(font1)
+        self.totalAdminValue.setFont(font)
 
         self.horizontalLayout_24.addWidget(self.totalAdminValue)
 
@@ -471,7 +486,15 @@ class Ui_AdminPanel(object):
         self.gridLayout_22.addItem(self.horizontalSpacer_20, 0, 1, 1, 1)
 
 
-        self.gridLayout_23.addWidget(self.frame_9, 1, 0, 1, 1)
+        self.gridLayout_23.addWidget(self.frame_9, 1, 0, 1, 2)
+
+        self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_23.addItem(self.horizontalSpacer_31, 1, 2, 1, 1)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 184, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_23.addItem(self.verticalSpacer_3, 2, 1, 1, 1)
 
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QWidget()
@@ -539,13 +562,6 @@ class Ui_AdminPanel(object):
         self.page_3.setObjectName(u"page_3")
         self.gridLayout_26 = QGridLayout(self.page_3)
         self.gridLayout_26.setObjectName(u"gridLayout_26")
-        self.label_2 = QLabel(self.page_3)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setFont(font2)
-        self.label_2.setFrameShape(QFrame.NoFrame)
-
-        self.gridLayout_26.addWidget(self.label_2, 0, 0, 1, 1)
-
         self.horizontalLayout_17 = QHBoxLayout()
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.horizontalSpacer_9 = QSpacerItem(18, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -581,16 +597,56 @@ class Ui_AdminPanel(object):
         self.gridLayout_10.setSpacing(0)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
         self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.frame_2 = QFrame(self.empDetailsFrame)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.NoFrame)
+        self.frame_2.setFrameShadow(QFrame.Plain)
+        self.frame_2.setLineWidth(1)
+        self.gridLayout_9 = QGridLayout(self.frame_2)
+        self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_4)
+
+        self.submitEmpDetails = QPushButton(self.frame_2)
+        self.submitEmpDetails.setObjectName(u"submitEmpDetails")
+        self.submitEmpDetails.setEnabled(True)
+        self.submitEmpDetails.setFont(font3)
+
+        self.horizontalLayout_10.addWidget(self.submitEmpDetails)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_10.addItem(self.horizontalSpacer_10)
+
+
+        self.gridLayout_9.addLayout(self.horizontalLayout_10, 0, 0, 2, 2)
+
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_9.addItem(self.verticalSpacer_12, 2, 0, 1, 1)
+
+
+        self.gridLayout_10.addWidget(self.frame_2, 1, 0, 1, 1)
+
         self.widget = QWidget(self.empDetailsFrame)
         self.widget.setObjectName(u"widget")
         self.gridLayout_8 = QGridLayout(self.widget)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.gridLayout_8.setContentsMargins(9, -1, -1, -1)
+        self.horizontalSpacer_38 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_38, 0, 0, 1, 1)
+
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.empIdLabel = QLabel(self.widget)
         self.empIdLabel.setObjectName(u"empIdLabel")
-        self.empIdLabel.setFont(font3)
+        font5 = QFont()
+        font5.setFamilies([u"Elephant"])
+        font5.setPointSize(12)
+        self.empIdLabel.setFont(font5)
 
         self.horizontalLayout_5.addWidget(self.empIdLabel)
 
@@ -606,74 +662,7 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_5.addWidget(self.empId)
 
 
-        self.gridLayout_8.addLayout(self.horizontalLayout_5, 0, 1, 1, 1)
-
-        self.horizontalLayout_14 = QHBoxLayout()
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.label_6 = QLabel(self.widget)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font3)
-
-        self.horizontalLayout_14.addWidget(self.label_6)
-
-        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_14.addItem(self.horizontalSpacer_26)
-
-        self.empDepartment = QLineEdit(self.widget)
-        self.empDepartment.setObjectName(u"empDepartment")
-
-        self.horizontalLayout_14.addWidget(self.empDepartment)
-
-
-        self.gridLayout_8.addLayout(self.horizontalLayout_14, 1, 2, 1, 1)
-
-        self.horizontalSpacer_38 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_8.addItem(self.horizontalSpacer_38, 0, 0, 1, 1)
-
-        self.horizontalLayout_9 = QHBoxLayout()
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.label_8 = QLabel(self.widget)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setFont(font3)
-
-        self.horizontalLayout_9.addWidget(self.label_8)
-
-        self.horizontalSpacer_24 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_9.addItem(self.horizontalSpacer_24)
-
-        self.empJoiningYear = QLineEdit(self.widget)
-        self.empJoiningYear.setObjectName(u"empJoiningYear")
-
-        self.horizontalLayout_9.addWidget(self.empJoiningYear)
-
-
-        self.gridLayout_8.addLayout(self.horizontalLayout_9, 2, 1, 1, 1)
-
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.label_7 = QLabel(self.widget)
-        self.label_7.setObjectName(u"label_7")
-        font5 = QFont()
-        font5.setFamilies([u"Elephant"])
-        font5.setPointSize(8)
-        self.label_7.setFont(font5)
-
-        self.horizontalLayout_7.addWidget(self.label_7)
-
-        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_7.addItem(self.horizontalSpacer_22)
-
-        self.empProfession = QLineEdit(self.widget)
-        self.empProfession.setObjectName(u"empProfession")
-
-        self.horizontalLayout_7.addWidget(self.empProfession)
-
-
-        self.gridLayout_8.addLayout(self.horizontalLayout_7, 1, 1, 1, 1)
+        self.gridLayout_8.addLayout(self.horizontalLayout_5, 0, 1, 1, 2)
 
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
@@ -693,7 +682,74 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_6.addWidget(self.empName)
 
 
-        self.gridLayout_8.addLayout(self.horizontalLayout_6, 0, 2, 1, 1)
+        self.gridLayout_8.addLayout(self.horizontalLayout_6, 0, 3, 1, 1)
+
+        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_39, 0, 4, 1, 1)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_7 = QLabel(self.widget)
+        self.label_7.setObjectName(u"label_7")
+        font6 = QFont()
+        font6.setFamilies([u"Elephant"])
+        font6.setPointSize(8)
+        self.label_7.setFont(font6)
+
+        self.horizontalLayout_7.addWidget(self.label_7)
+
+        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_22)
+
+        self.empProfession = QLineEdit(self.widget)
+        self.empProfession.setObjectName(u"empProfession")
+
+        self.horizontalLayout_7.addWidget(self.empProfession)
+
+
+        self.gridLayout_8.addLayout(self.horizontalLayout_7, 1, 1, 1, 2)
+
+        self.horizontalLayout_14 = QHBoxLayout()
+        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
+        self.label_6 = QLabel(self.widget)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setFont(font3)
+
+        self.horizontalLayout_14.addWidget(self.label_6)
+
+        self.horizontalSpacer_26 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_14.addItem(self.horizontalSpacer_26)
+
+        self.empDepartment = QLineEdit(self.widget)
+        self.empDepartment.setObjectName(u"empDepartment")
+
+        self.horizontalLayout_14.addWidget(self.empDepartment)
+
+
+        self.gridLayout_8.addLayout(self.horizontalLayout_14, 1, 3, 1, 1)
+
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.label_8 = QLabel(self.widget)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setFont(font3)
+
+        self.horizontalLayout_9.addWidget(self.label_8)
+
+        self.horizontalSpacer_24 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_24)
+
+        self.empJoiningYear = QLineEdit(self.widget)
+        self.empJoiningYear.setObjectName(u"empJoiningYear")
+
+        self.horizontalLayout_9.addWidget(self.empJoiningYear)
+
+
+        self.gridLayout_8.addLayout(self.horizontalLayout_9, 2, 1, 1, 2)
 
         self.horizontalLayout_8 = QHBoxLayout()
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
@@ -713,50 +769,35 @@ class Ui_AdminPanel(object):
         self.horizontalLayout_8.addWidget(self.empExperience)
 
 
-        self.gridLayout_8.addLayout(self.horizontalLayout_8, 2, 2, 1, 1)
+        self.gridLayout_8.addLayout(self.horizontalLayout_8, 2, 3, 1, 1)
 
-        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.label = QLabel(self.widget)
+        self.label.setObjectName(u"label")
+        self.label.setFont(font3)
 
-        self.gridLayout_8.addItem(self.horizontalSpacer_39, 0, 3, 1, 1)
+        self.gridLayout_8.addWidget(self.label, 3, 1, 1, 1)
+
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.male = QRadioButton(self.widget)
+        self.male.setObjectName(u"male")
+
+        self.verticalLayout.addWidget(self.male)
+
+        self.female = QRadioButton(self.widget)
+        self.female.setObjectName(u"female")
+
+        self.verticalLayout.addWidget(self.female)
+
+
+        self.gridLayout_8.addLayout(self.verticalLayout, 3, 2, 1, 1)
+
+        self.horizontalSpacer_42 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_8.addItem(self.horizontalSpacer_42, 3, 3, 1, 1)
 
 
         self.gridLayout_10.addWidget(self.widget, 0, 0, 1, 1)
-
-        self.frame_2 = QFrame(self.empDetailsFrame)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.NoFrame)
-        self.frame_2.setFrameShadow(QFrame.Plain)
-        self.frame_2.setLineWidth(1)
-        self.gridLayout_9 = QGridLayout(self.frame_2)
-        self.gridLayout_9.setSpacing(0)
-        self.gridLayout_9.setObjectName(u"gridLayout_9")
-        self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_10 = QHBoxLayout()
-        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_10.addItem(self.horizontalSpacer_4)
-
-        self.submitEmpDetails = QPushButton(self.frame_2)
-        self.submitEmpDetails.setObjectName(u"submitEmpDetails")
-        self.submitEmpDetails.setEnabled(True)
-        self.submitEmpDetails.setFont(font3)
-
-        self.horizontalLayout_10.addWidget(self.submitEmpDetails)
-
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_10.addItem(self.horizontalSpacer_10)
-
-
-        self.gridLayout_9.addLayout(self.horizontalLayout_10, 0, 0, 1, 1)
-
-
-        self.gridLayout_10.addWidget(self.frame_2, 1, 0, 1, 1)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_10.addItem(self.verticalSpacer_3, 2, 0, 1, 1)
 
 
         self.horizontalLayout_3.addWidget(self.empDetailsFrame)
@@ -811,9 +852,9 @@ class Ui_AdminPanel(object):
         self.imageSelectionButton.setObjectName(u"imageSelectionButton")
         self.imageSelectionButton.setEnabled(False)
         self.imageSelectionButton.setFont(font3)
-        icon9 = QIcon()
-        icon9.addFile(u"../../../../Downloads/pencil.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.imageSelectionButton.setIcon(icon9)
+        icon10 = QIcon()
+        icon10.addFile(u"../../../../Downloads/pencil.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.imageSelectionButton.setIcon(icon10)
         self.imageSelectionButton.setIconSize(QSize(25, 25))
         self.imageSelectionButton.setCheckable(True)
 
@@ -881,18 +922,25 @@ class Ui_AdminPanel(object):
 
         self.gridLayout_26.addItem(self.verticalSpacer_10, 2, 1, 1, 1)
 
+        self.addEmployeeLabel = QLabel(self.page_3)
+        self.addEmployeeLabel.setObjectName(u"addEmployeeLabel")
+        self.addEmployeeLabel.setFont(font2)
+        self.addEmployeeLabel.setFrameShape(QFrame.NoFrame)
+
+        self.gridLayout_26.addWidget(self.addEmployeeLabel, 0, 0, 1, 1)
+
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
         self.gridLayout_28 = QGridLayout(self.page_4)
         self.gridLayout_28.setObjectName(u"gridLayout_28")
-        self.label_3 = QLabel(self.page_4)
-        self.label_3.setObjectName(u"label_3")
-        font6 = QFont()
-        font6.setFamilies([u"Rockwell"])
-        self.label_3.setFont(font6)
+        self.attendanceSheet = QLabel(self.page_4)
+        self.attendanceSheet.setObjectName(u"attendanceSheet")
+        font7 = QFont()
+        font7.setFamilies([u"Rockwell"])
+        self.attendanceSheet.setFont(font7)
 
-        self.gridLayout_28.addWidget(self.label_3, 0, 0, 1, 1)
+        self.gridLayout_28.addWidget(self.attendanceSheet, 0, 0, 1, 1)
 
         self.empListShortFrame = QFrame(self.page_4)
         self.empListShortFrame.setObjectName(u"empListShortFrame")
@@ -928,11 +976,11 @@ class Ui_AdminPanel(object):
 
         self.gridLayout_18.addItem(self.verticalSpacer_6, 1, 0, 1, 1)
 
-        self.label_11 = QLabel(self.widget_2)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setFont(font2)
+        self.reportsLabel = QLabel(self.widget_2)
+        self.reportsLabel.setObjectName(u"reportsLabel")
+        self.reportsLabel.setFont(font2)
 
-        self.gridLayout_18.addWidget(self.label_11, 0, 0, 1, 1)
+        self.gridLayout_18.addWidget(self.reportsLabel, 0, 0, 1, 1)
 
         self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -1100,7 +1148,7 @@ class Ui_AdminPanel(object):
         self.submitEmpDetails.clicked["bool"].connect(self.imageSelectionButton.setDisabled)
         self.imageSelectionButton.clicked["bool"].connect(self.RegisterEmp.setEnabled)
 
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(AdminPanel)
@@ -1108,27 +1156,71 @@ class Ui_AdminPanel(object):
 
     def retranslateUi(self, AdminPanel):
         AdminPanel.setWindowTitle(QCoreApplication.translate("AdminPanel", u"AdminPanel", None))
+#if QT_CONFIG(tooltip)
+        self.goToReportsLabeled.setToolTip(QCoreApplication.translate("AdminPanel", u"Reports", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToReportsLabeled.setText(QCoreApplication.translate("AdminPanel", u"Reports", None))
+        self.Exit_2.setText(QCoreApplication.translate("AdminPanel", u"Logout", None))
+#if QT_CONFIG(tooltip)
+        self.goToAddEmployeeLabeled.setToolTip(QCoreApplication.translate("AdminPanel", u"Add Employee", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToAddEmployeeLabeled.setText(QCoreApplication.translate("AdminPanel", u"Add Employee", None))
         self.MainLogo.setText(QCoreApplication.translate("AdminPanel", u"@PTK", None))
-        self.goToDashboardLabeled.setText(QCoreApplication.translate("AdminPanel", u"Dashboard", None))
+#if QT_CONFIG(tooltip)
+        self.goToListOfEmployeeLabeled.setToolTip(QCoreApplication.translate("AdminPanel", u"Employee List", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToListOfEmployeeLabeled.setText(QCoreApplication.translate("AdminPanel", u"Employee List", None))
+#if QT_CONFIG(tooltip)
+        self.goToAttendanceLabeled.setToolTip(QCoreApplication.translate("AdminPanel", u"Attendance", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToAttendanceLabeled.setText(QCoreApplication.translate("AdminPanel", u"Attendance", None))
+#if QT_CONFIG(tooltip)
+        self.launchAnAttenderLabeled.setToolTip(QCoreApplication.translate("AdminPanel", u"Launch Attender", None))
+#endif // QT_CONFIG(tooltip)
         self.launchAnAttenderLabeled.setText(QCoreApplication.translate("AdminPanel", u"Launch Attender", None))
 #if QT_CONFIG(shortcut)
         self.launchAnAttenderLabeled.setShortcut("")
 #endif // QT_CONFIG(shortcut)
-        self.goToAddEmployeeLabeled.setText(QCoreApplication.translate("AdminPanel", u"Add Employee", None))
-        self.Exit_2.setText(QCoreApplication.translate("AdminPanel", u"Logout", None))
-        self.goToAttendanceLabeled.setText(QCoreApplication.translate("AdminPanel", u"Attendance", None))
-        self.goToReportsLabeled.setText(QCoreApplication.translate("AdminPanel", u"Reports", None))
-        self.goToListOfEmployeeLabeled.setText(QCoreApplication.translate("AdminPanel", u"Employee List", None))
+#if QT_CONFIG(tooltip)
+        self.goToDashboardLabeled.setToolTip(QCoreApplication.translate("AdminPanel", u"Dashboard", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToDashboardLabeled.setText(QCoreApplication.translate("AdminPanel", u"Dashboard", None))
+#if QT_CONFIG(tooltip)
+        self.remove_emp_label.setToolTip(QCoreApplication.translate("AdminPanel", u"Remove Employee", None))
+#endif // QT_CONFIG(tooltip)
+        self.remove_emp_label.setText(QCoreApplication.translate("AdminPanel", u"Remove Employee", None))
         self.menuButton.setText("")
-        self.goToReports.setText("")
-        self.goToDashboard.setText("")
-        self.goToListOfEmployee.setText("")
-        self.goToAttendance.setText("")
-        self.goToAddEmployee.setText("")
+#if QT_CONFIG(tooltip)
+        self.launchAnAttender.setToolTip(QCoreApplication.translate("AdminPanel", u"Launch Attender", None))
+#endif // QT_CONFIG(tooltip)
         self.launchAnAttender.setText("")
-        self.IconLogo.setText("")
+#if QT_CONFIG(tooltip)
+        self.goToAddEmployee.setToolTip(QCoreApplication.translate("AdminPanel", u"Add Employee", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToAddEmployee.setText("")
+#if QT_CONFIG(tooltip)
+        self.goToDashboard.setToolTip(QCoreApplication.translate("AdminPanel", u"Dashboard", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToDashboard.setText("")
+#if QT_CONFIG(tooltip)
+        self.goToAttendance.setToolTip(QCoreApplication.translate("AdminPanel", u"Attendance", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToAttendance.setText("")
         self.Exit.setText("")
-        self.label_14.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Dashboard</span></p></body></html>", None))
+#if QT_CONFIG(tooltip)
+        self.goToReports.setToolTip(QCoreApplication.translate("AdminPanel", u"Reports", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToReports.setText("")
+        self.IconLogo.setText("")
+#if QT_CONFIG(tooltip)
+        self.goToListOfEmployee.setToolTip(QCoreApplication.translate("AdminPanel", u"Employee List", None))
+#endif // QT_CONFIG(tooltip)
+        self.goToListOfEmployee.setText("")
+#if QT_CONFIG(tooltip)
+        self.remove_emp.setToolTip(QCoreApplication.translate("AdminPanel", u"Remove Employee", None))
+#endif // QT_CONFIG(tooltip)
+        self.remove_emp.setText("")
+        self.dashboardLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Dashboard</span></p></body></html>", None))
         self.totalEmpLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt;\">Total Employees </span></p><p align=\"center\"><span style=\" font-size:11pt;\">Registered</span></p></body></html>", None))
         self.totalEmpValue.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt;\">0</span></p></body></html>", None))
         self.totalAdminLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p align=\"center\"><span style=\" font-size:11pt;\">Total  Admin </span></p><p align=\"center\"><span style=\" font-size:11pt;\">Registered</span></p></body></html>", None))
@@ -1136,26 +1228,29 @@ class Ui_AdminPanel(object):
         self.AttendanceList.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Employee List:    </span></p></body></html>", None))
         self.currentMonthAndYear.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p align=\"center\"> fdsfafasd</p></body></html>", None))
         self.downloadCurrentAttendance.setText(QCoreApplication.translate("AdminPanel", u"Download Current Attendance", None))
-        self.label_2.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Add Employee</span></p></body></html>", None))
+        self.submitEmpDetails.setText(QCoreApplication.translate("AdminPanel", u"Submit", None))
         self.empIdLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:8pt;\">Employee Id</span></p></body></html>", None))
         self.empId.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Employee ID", None))
+        self.empNameLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p>Employee Name</p></body></html>", None))
+        self.empName.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Employee Name", None))
+        self.label_7.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:9pt;\">Profession   </span></p></body></html>", None))
+        self.empProfession.setText("")
+        self.empProfession.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Porfession", None))
         self.label_6.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p>Department </p></body></html>", None))
         self.empDepartment.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Department", None))
         self.label_8.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p>Joining Year</p></body></html>", None))
         self.empJoiningYear.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Joining Year", None))
-        self.label_7.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:9pt;\">Profession   </span></p></body></html>", None))
-        self.empProfession.setText("")
-        self.empProfession.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Porfession", None))
-        self.empNameLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p>Employee Name</p></body></html>", None))
-        self.empName.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Employee Name", None))
         self.label_10.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p>Experience </p></body></html>", None))
         self.empExperience.setPlaceholderText(QCoreApplication.translate("AdminPanel", u"Total Experience", None))
-        self.submitEmpDetails.setText(QCoreApplication.translate("AdminPanel", u"Submit", None))
+        self.label.setText(QCoreApplication.translate("AdminPanel", u"Gender", None))
+        self.male.setText(QCoreApplication.translate("AdminPanel", u"Male", None))
+        self.female.setText(QCoreApplication.translate("AdminPanel", u"Female", None))
         self.imageFrame.setText("")
         self.imageSelectionButton.setText(QCoreApplication.translate("AdminPanel", u"Select Image", None))
         self.RegisterEmp.setText(QCoreApplication.translate("AdminPanel", u"Register", None))
-        self.label_3.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Attendance Sheet</span></p></body></html>", None))
-        self.label_11.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Reports</span></p></body></html>", None))
+        self.addEmployeeLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Add Employee</span></p></body></html>", None))
+        self.attendanceSheet.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Attendance Sheet</span></p></body></html>", None))
+        self.reportsLabel.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700; text-decoration: underline;\">Reports</span></p></body></html>", None))
         self.getReportButton.setText(QCoreApplication.translate("AdminPanel", u"Generate Report", None))
         self.label_4.setText(QCoreApplication.translate("AdminPanel", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">Select The Report Duration</span></p></body></html>", None))
         self.period.setItemText(0, QCoreApplication.translate("AdminPanel", u"Last Month", None))

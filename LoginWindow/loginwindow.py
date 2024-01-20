@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from PySide6.QtWidgets import QApplication, QWidget, QMessageBox
+from PySide6.QtWidgets import QApplication, QWidget, QMessageBox, QLineEdit
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtCore import QRegularExpression
 
@@ -56,6 +56,9 @@ class LoginWindow(QWidget):
 
         # self.ui.loginButton.toggled.connect(lambda: self.loginVerify())
 
+        self.ui.showPassword.clicked.connect(self.showPassword)
+        self.passwordVisible = False
+
     def getAdminData(self):
         if self.ui.adminId.text() == "" and self.ui.adminPassword.text() == "":
             if LoginWindow.a == 0:
@@ -103,6 +106,15 @@ class LoginWindow(QWidget):
     def resetInputs(self):
         self.ui.adminId.setText("")
         self.ui.adminPassword.setText("")
+
+    def showPassword(self):
+        if self.passwordVisible == False:
+            self.ui.adminPassword.setEchoMode(QLineEdit.EchoMode.Normal)
+            self.passwordVisible = True
+
+        else:
+            self.ui.adminPassword.setEchoMode(QLineEdit.EchoMode.Password)
+            self.passwordVisible = False
 
 
 

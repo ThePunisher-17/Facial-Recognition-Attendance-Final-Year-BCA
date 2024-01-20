@@ -1,6 +1,6 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QMainWindow, QFileDialog, QWidget, QMessageBox
+from PySide6.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QMainWindow, QFileDialog, QWidget, QMessageBox, QInputDialog
 from PySide6.QtGui import QPixmap, QRegularExpressionValidator
 from PySide6.QtCore import QPropertyAnimation, QEasingCurve, QTimer, QRegularExpression
 
@@ -18,7 +18,7 @@ from getpass import getuser
 # from Core.encodegenerator import EncodeGenerator
 # from ui_form import Ui_AdminPanel
 
-from AdminPanel.Core.main1 import Attender
+from AdminPanel.Core.main import Attender
 from AdminPanel.savecurrentattendance import SaveCurrentAttendance
 from AdminPanel.Core.databasedataadder import DatabaseDataAdder
 from AdminPanel.Core.encodegenerator import EncodeGenerator
@@ -83,7 +83,7 @@ class AdminPanel(QWidget):
         self.ui.empExperience.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{2}$")))
 
 
-        if self.date == "03":
+        if self.date == "1":
             self.itIsFirstDay()
 
         #
@@ -221,8 +221,11 @@ class AdminPanel(QWidget):
             Dashboard labels
             Start
         '''
-        self.ui.totalEmpValue.setText(str(len(self.db_ref.get())))
-        self.ui.totalAdminValue.setText(str(len(self.db_ref_admin.get())))
+        try:
+            self.ui.totalEmpValue.setText(str(len(self.db_ref.get())))
+            self.ui.totalAdminValue.setText(str(len(self.db_ref_admin.get())))
+        except:
+            pass
         '''
             End
         '''
@@ -246,6 +249,26 @@ class AdminPanel(QWidget):
             End
         '''
 
+        '''
+            Gender Radio buttons
+            Start
+        '''
+        self.ui.male.clicked.connect(self.empIsMale)
+        self.ui.female.clicked.connect(self.empIsFemale)
+        '''
+            End
+        '''
+
+
+        '''
+            Remove Employee
+        '''
+        self.ui.remove_emp.clicked.connect(self.remove_emp_agreement)
+        self.ui.remove_emp_label.clicked.connect(self.remove_emp_agreement)
+        '''
+            End
+        '''
+
     def attendanceTableDetailedShow(self):
         # Retrieve data from Firebase
 
@@ -256,11 +279,11 @@ class AdminPanel(QWidget):
 
 
         self.ui.attendanceTableDetailed.setRowCount(len(data))
-        self.ui.attendanceTableDetailed.setColumnCount(7)
+        self.ui.attendanceTableDetailed.setColumnCount(8)
 
         # Set the headers
         self.ui.attendanceTableDetailed.setHorizontalHeaderLabels(
-            ['ID', 'Name', "Profession", "Department", "Experience", "Starting Year", "Total Attendance"])
+            ['ID', 'Name', "Profession", "Gender","Department", "Experience", "Starting Year", "Total Attendance"])
 
         # Add data to the table
         for row, (table_name, table_data) in enumerate(data.items()):
@@ -270,6 +293,9 @@ class AdminPanel(QWidget):
             empName = QTableWidgetItem(str(table_data["Name"]))
 
             empProfession = QTableWidgetItem(str(table_data["Profession"]))
+            
+            empGender = QTableWidgetItem(str(table_data["Gender"]))
+            
 
             empDepartment = QTableWidgetItem(str(table_data["Department"]))
 
@@ -285,10 +311,11 @@ class AdminPanel(QWidget):
             self.ui.attendanceTableDetailed.setItem(row, 0, empId)
             self.ui.attendanceTableDetailed.setItem(row, 1, empName)
             self.ui.attendanceTableDetailed.setItem(row, 2, empProfession)
-            self.ui.attendanceTableDetailed.setItem(row, 3, empDepartment)
-            self.ui.attendanceTableDetailed.setItem(row, 4, empExperience)
-            self.ui.attendanceTableDetailed.setItem(row, 5, empStartingYear)
-            self.ui.attendanceTableDetailed.setItem(row, 6, empTotalAttendance)
+            self.ui.attendanceTableDetailed.setItem(row, 3, empGender)
+            self.ui.attendanceTableDetailed.setItem(row, 4, empDepartment)
+            self.ui.attendanceTableDetailed.setItem(row, 5, empExperience)
+            self.ui.attendanceTableDetailed.setItem(row, 6, empStartingYear)
+            self.ui.attendanceTableDetailed.setItem(row, 7, empTotalAttendance)
 
             self.ui.attendanceTableDetailed.setColumnWidth(0, 40)
             self.ui.attendanceTableDetailed.setColumnWidth(1, 200)
@@ -332,7 +359,7 @@ class AdminPanel(QWidget):
             self.ui.thisMonthAttendance.verticalHeader().setVisible(False)
 
     def setData(self):
-        
+        self.ui.imageSelectionButton.setEnabled = False
         self.id = self.ui.empId.text()
         self.name = self.ui.empName.text()
         self.profession = self.ui.empProfession.text()
@@ -340,7 +367,8 @@ class AdminPanel(QWidget):
         self.joiningYear = self.ui.empJoiningYear.text()
         self.experience = self.ui.empExperience.text()
 
-        if len(self.id) == 0 or len(self.name) == 0 or len(self.profession) == 0 or len(self.department) == 0 or len(self.joiningYear) == 0 or len(self.experience) == 0 :
+        if len(self.id) == 0 or len(self.name) == 0 or len(self.profession) == 0 or len(self.department) == 0 or len(self.joiningYear) == 0 or len(self.experience) == 0 or len(self.gender) < 2  :
+            self.ui.imageSelectionButton.setEnabled = False
             message = QMessageBox()
             message.setWindowTitle("Failed")
             message.setText("Please fill all the fields")
@@ -355,6 +383,7 @@ class AdminPanel(QWidget):
             return 
         
         if len(self.id) < 5:
+            self.ui.imageSelectionButton.setEnabled = False
             message = QMessageBox()
             message.setWindowTitle("Failed")
             message.setText("Employee ID must have at 5 characters")
@@ -370,6 +399,7 @@ class AdminPanel(QWidget):
             self.ui.empId.setFocus()
             return
         if len(self.ui.empExperience.text()) < 2:
+            self.ui.imageSelectionButton.setEnabled = False
             message = QMessageBox()
             message.setWindowTitle("Failed")
             message.setText("Employee Experience must have at 2 characters")
@@ -379,8 +409,8 @@ class AdminPanel(QWidget):
             self.ui.empExperience.setText("")
             self.ui.empExperience.setFocus()
             return
-        
 
+        self.ui.imageSelectionButton.setEnabled = True
         
 
     def updateEmpDetails(self):
@@ -394,6 +424,7 @@ class AdminPanel(QWidget):
             details = {
                 "Name": self.ui.empName.text(),
                 "Profession": self.ui.empProfession.text(),
+                "Gender" : self.gender,
                 "Department": self.ui.empDepartment.text(),
                 "Starting_Year": self.ui.empJoiningYear.text(),
                 "Experience": self.ui.empExperience.text(),
@@ -459,7 +490,7 @@ class AdminPanel(QWidget):
             self.ui.empExperience.setText("")
             self.ui.imageFrame.setPixmap(QPixmap("icons\person Icon.ico"))
             self.ui.imageFrame.setScaledContents(True)
-            self.ui.imageSelectionButton.setEnabled(False)
+            # self.ui.imageSelectionButton.setEnabled(False)
             self.ui.RegisterEmp.setEnabled(False)
         else:
             self.ui.imageFrame.setPixmap(QPixmap("icons\person Icon.ico"))
@@ -476,7 +507,7 @@ class AdminPanel(QWidget):
     def itIsFirstDay(self):
 
         data = db.reference(
-            f"Employee/{int(self.year)-1}/{self.monthList[int(self.month)-2]}/").get()
+            f"Employee/{int(self.year)}/{self.monthList[int(self.month)-2]}/").get()
 
         for key, value in data.items():
             data[key]["total_attendance"] = 0
@@ -556,6 +587,49 @@ class AdminPanel(QWidget):
             month_list.insert(0, month_list.pop())
 
         return month_list
+
+    def remove_emp_agreement(self, ids):
+        message = QMessageBox()
+        message.setWindowTitle("Remove Employee")
+        message.setText(f"Are you sure you want to delete an employee?")
+        message.setStandardButtons(QMessageBox.Ok)
+        message.setIcon(QMessageBox.Information)
+        message.exec()
+
+
+        ids, ok = QInputDialog.getInt(self, "Remove Employee", "Enter Employee ID to remove",  0, 1000, 99999, 1)
+        ids_list = list(self.db_ref.get().keys())
+
+        ids = str(ids)
+        print(self.db_ref)
+        if ids:
+            QMessageBox.information(self, "Info", f'ID number {ids} will now being deleted!')
+
+            if ids in ids_list:
+                self.db_ref.child(ids).delete()
+                message = QMessageBox()
+                message.setWindowTitle("Success")
+                message.setText(
+                    f"ID: {ids} removed successfully.")
+                message.setStandardButtons(QMessageBox.Ok)
+                message.setIcon(QMessageBox.Information)
+                message.exec()
+
+            else:
+                message = QMessageBox()
+                message.setWindowTitle("Error")
+                message.setText(f"ID: {ids} doesn't exits.")
+                message.setStandardButtons(QMessageBox.Ok)
+                message.setIcon(QMessageBox.Information)
+                message.exec()
+
+        
+    def empIsMale(self):
+        # print('i was called')
+        self.gender = "Male"
+
+    def empIsFemale(self):
+        self.gender = "Female"
 
 
 if __name__ == "__main__":

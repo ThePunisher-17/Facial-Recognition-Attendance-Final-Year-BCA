@@ -1,8 +1,9 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from PySide6.QtWidgets import QApplication, QWidget, QMessageBox
+from PySide6.QtWidgets import QApplication, QWidget, QMessageBox, QLineEdit
 from PySide6.QtGui import QRegularExpressionValidator
 from PySide6.QtCore import QRegularExpression
+from PySide6.QtGui import QIcon
 
 import firebase_admin
 from firebase_admin import credentials, db
@@ -58,6 +59,32 @@ class SignUpWindow(QWidget):
             End
         '''
 
+        '''
+            Show Password
+        '''
+        self.ui.showPassbutton_0.clicked.connect(self.showPassword)
+        self.ui.showPassbutton_1.clicked.connect(self.showPassword1)
+        self.passwordVisible0= False
+        self.passwordVisible1= False
+        '''
+            End
+        '''
+
+
+    def checkEmpty(self):
+        if len(self.ui.adminName.text()) == 0 or len(self.ui.adminMobileNo.text()) == 0 or len(self.ui.adminPass1.text()) == 0 or len(self.ui.adminPass2.text()) == 0:
+            message = QMessageBox()
+            message.setWindowTitle("Error")
+            message.setText("Please fill the details")
+            message.setIcon(QMessageBox.Critical)
+            message.setStandardButtons(QMessageBox.Ok)
+            message.exec()
+
+            return False
+        
+        return True
+            
+
 
     def checkDuplication(self):
         data = db.reference("administrators").get()
@@ -78,35 +105,62 @@ class SignUpWindow(QWidget):
 
         return True
 
+    def nameValidate(self, name):
+        a = name.split()
+        if len(a[0])>4:
+            return a[0][0:4]
+        else:
+            x = a[0]+(a[1].lower())
+            return x[0:4]
+
+    def showPassword(self):
+        if self.passwordVisible0 == False:
+            self.ui.adminPass1.setEchoMode(QLineEdit.EchoMode.Normal)
+            self.passwordVisible0 = True
+        else:
+            self.ui.adminPass1.setEchoMode(QLineEdit.EchoMode.Password)
+            self.passwordVisible0 = False
+
+
+    def showPassword1(self):
+        if self.passwordVisible1 == False:
+            self.ui.adminPass2.setEchoMode(QLineEdit.EchoMode.Normal)
+            self.passwordVisible1 = True
+        else:
+            self.ui.adminPass2.setEchoMode(QLineEdit.EchoMode.Password)
+            self.passwordVisible1 = False
+
+
 
 
     def collectData(self):
         data = {}
+        if self.checkEmpty():
+            if self.checkDuplication() == True:
+                name = self.nameValidate(self.ui.adminName.text())
+                no = self.ui.adminMobileNo.text()
+                id = name+no[-4:]
 
-        if self.checkDuplication() == True:
-            name = self.ui.adminName.text()
-            no = self.ui.adminMobileNo.text()
-            id = name[:4]+no[-4:]
-            if self.ui.adminPass1.text() == self.ui.adminPass2.text():
-                password = self.ui.adminPass1.text()
-                rawdata = {"Name": name, "No": no, "Password": password}
-                data[id] = rawdata
+                if self.ui.adminPass1.text() == self.ui.adminPass2.text():
+                    password = self.ui.adminPass1.text()
+                    rawdata = {"Name": name, "No": no, "Password": password}
+                    data[id] = rawdata
 
-                for key, value in data.items():
-                    self.ref.child(str(key)).set(value)
+                    for key, value in data.items():
+                        self.ref.child(str(key)).set(value)
 
-                return self.launchPopUpAndLogin()
+                    return self.launchPopUpAndLogin()
 
-            else:
-                message = QMessageBox()
-                message.setWindowTitle("Error")
-                message.setText("Password Mismatch")
-                message.setIcon(QMessageBox.Critical)
-                message.setStandardButtons(QMessageBox.Ok)
-                message.exec()
-                self.clearInp()
+                else:
+                    message = QMessageBox()
+                    message.setWindowTitle("Error")
+                    message.setText("Password Mismatch")
+                    message.setIcon(QMessageBox.Critical)
+                    message.setStandardButtons(QMessageBox.Ok)
+                    message.exec()
+                    self.clearInp()
 
-                return False
+                    return False
 
     def launchPopUpAndLogin(self):
         message = QMessageBox()

@@ -1,5 +1,4 @@
-    SignUp Window
-    #SignUpWindow {
+    SignUp Window #SignUpWindow {
         background-color: rgba(0, 0, 0, 0.5);
         background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.66 #5E17EB, stop:1 #5E17EB);
     }
@@ -50,8 +49,7 @@
     }
 
     QFrame#frame_4 {
-        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
-        border-radius: 30px;
+        background: #586e75;
     }
 
     QFrame#frame {
@@ -74,6 +72,10 @@
         border: none;
     }
 
+    QLineEdit{
+        background-color: rgba(255, 250, 250, .5);
+        border: none;
+    }
 
     /* AdminPanel */
 
@@ -81,8 +83,7 @@
     /*= Style for mainwindow START
   ==================================================== */
     #StatusBar {
-        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
-       
+        background: #234049;
     }
 
     /*= END
@@ -174,7 +175,7 @@
 
     #AddEmpFrame {
         border: 2px solid black;
-        background-color: rgba(255, 255, 255, 1);
+        background: #586e75;
     }
 
     /*= END
@@ -260,7 +261,7 @@
     #empFrame {
         border: 2px solid black;
         border-radius: 5px;
-        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        background: #586e75;
     }
 
     #totalEmpLabel {
@@ -282,9 +283,13 @@
     }
 
     #adminFrame {
-        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        background: #586e75;
         border: 2px solid black;
         border-radius: 5px;
+    }
+
+    #dashboardLabel {
+        color: #788596;
     }
 
     /*= END
@@ -299,11 +304,19 @@
     }
 
     QTableWidget#attendanceTableDetailed {
-        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        background: #586e75;
     }
 
     QTableWidget#attendanceTableDetailed QHeaderView::section {
-        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        background: #4a6972;
+    }
+
+    #AttendanceList {
+        color: #788596;
+    }
+
+    #currentMonthAndYear{
+        color: #788596;
     }
 
     /*= END
@@ -319,12 +332,16 @@
     }
 
     QTableWidget#thisMonthAttendance {
-        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        background: #586e75;
         border-radius: 10%;
     }
 
     QTableWidget#thisMonthAttendance QHeaderView::section {
-        background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5DE0E6, stop:1 #004AAD);
+        background: #4a6972;
+    }
+
+    #attendanceSheet {
+        color: #788596;
     }
 
     /*= END
@@ -335,23 +352,26 @@
   ==================================================== */
 
     QFrame#coverFrame {
-        background: rgba(17, 57, 57, .5);
+        background-color: rgba(17, 57, 57, .6);
         border-radius: 10%;
         border-radius: 40px;
     }
 
     QFrame#AddEmpFrame {
-        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
+        background: #073642;
         border-radius: 5%;
         border-radius: 40px;
     }
 
-    QFrame#empDetailsFrame,
-    #empPhotoFrame {
-        background: rgba(17, 57, 57, .5);
+    QFrame#empPhotoFrame {
+        background: #073642;
 
         border-radius: 5%;
         border-radius: 40px;
+    }
+
+    #addEmployeeLabel {
+        color: #788596;
     }
 
     /*= END
@@ -370,7 +390,7 @@
     }
 
     QFrame#ReportsFrame {
-        background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 #FF5757, stop:0.67 #CB6CE6, stop:0.33 #5E17EB, stop:0#5E17EB);
+        background: #475f66;
         border-radius: 10%;
     }
 
@@ -383,45 +403,55 @@
         border-radius: 10%;
     }
 
+    #reportsLabel {
+        color: #788596;
+    }
+
     /*= END
   ==================================================== */
 
 
-  QMainWindow#Project{
-    /* background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FF5757, stop:0.33 #CB6CE6, stop:0.67 #5E17EB, stop:1 #5E17EB); */
-    background: qconicalgradient(cx:0.5, cy:0.5, angle:30,stop:0 #000, stop:0.33 #FF5757, stop:0.67 #5271FF, stop:1 #FFDE59);
-    /* background: qradialgradient(cx:0, cy:0, radius: 1,fx:0.5, fy:0.5, stop:0 white, stop:1 green); */
-  }
+    QMainWindow#Project {
+        background-color: #002b36;
+        /* background: qconicalgradient(cx:0.5, cy:0.5, angle:30,stop:0 #000, stop:0.33 #FF5757, stop:0.67 #5271FF, stop:1 #FFDE59); */
+        /* background: qradialgradient(cx:0, cy:0, radius: 1,fx:0.5, fy:0.5, stop:0 white, stop:1 green); */
+    }
 
 
 
-  /* Reset Password Page */
+    /* Reset Password Page */
 
-  QFrame#coverFrameReset1{
-    background-color: rgba(17, 57, 57, .6);
-    border-radius: 10%;
-    border-radius: 40px;
-}
-QFrame#coverFrameReset2{
-    background-color: rgba(17, 57, 57, .6);
-    border-radius: 10%;
-    border-radius: 40px;
-}
+    QFrame#coverFrameReset1 {
+        background-color: rgba(17, 57, 57, .6);
+        border-radius: 10%;
+        border-radius: 40px;
+    }
 
-QFrame#MidFrameReset1{
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
-    border-radius: 30px
-}
-QFrame#MidFrameReset2{
-    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #5E17EB, stop:0.33 #5E17EB, stop:0.67 #CB6CE6, stop:1 #FF5757);
-    border-radius: 30px
-}
+    QFrame#coverFrameReset2 {
+        background-color: rgba(17, 57, 57, .6);
+        border-radius: 10%;
+        border-radius: 40px;
+    }
 
-QFrame#ResetFrameReset1{
-    background-color: rgba(17, 57, 57, .6);
-    border-radius: 20%;
-}
-QFrame#ResetFrameReset2{
-    background-color: rgba(17, 57, 57, .6);
-    border-radius: 20%;
-}
+    QFrame#MidFrameReset1 {
+        background: #586e75;
+        border-radius: 30px
+    }
+
+    QFrame#MidFrameReset2 {
+        background: #586e75;
+        border-radius: 30px
+    }
+
+    QFrame#ResetFrameReset1 {
+        background: #788596;
+        border-radius: 20%;
+    }
+
+    QFrame#ResetFrameReset2 {
+        background: #788596;
+        border-radius: 20%;
+    }
+
+
+    

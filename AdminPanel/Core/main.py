@@ -22,24 +22,24 @@ class Attender(object):
         super().__init__()
         self.path = os.getcwd()
 
-        cred = credentials.Certificate(f"{self.path}\\AdminPanel\\Core\\Database key\\serviceAccountKey.json")
-        firebase_admin.initialize_app(cred, {
-            "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-            'storageBucket': "employeeattendancerealtime.appspot.com"
-        })
+        # cred = credentials.Certificate(f"{self.path}\\AdminPanel\\Core\\Database key\\serviceAccountKey.json")
+        # firebase_admin.initialize_app(cred, {
+        #     "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+        #     'storageBucket': "employeeattendancerealtime.appspot.com"
+        # })
 
-        # cred = credentials.Certificate(
-            # f"{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json")
-        # project_id = cred.project_id
+        cred = credentials.Certificate(
+            f"{self.path}\\AdminPanel\\Core\\Database Key\\serviceAccountKey.json")
+        project_id = cred.project_id
 
-        # try:
-        #     firebase_admin.get_app(project_id)
+        try:
+            firebase_admin.get_app(project_id)
 
-        # except ValueError:
-        #     firebase_admin.initialize_app(credential=cred, name=project_id, options={
-        #         "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
-        #         'storageBucket': "employeeattendancerealtime.appspot.com"
-        #     })
+        except ValueError:
+            firebase_admin.initialize_app(credential=cred, name=project_id, options={
+                "databaseURL": "https://employeeattendancerealtime-default-rtdb.firebaseio.com/",
+                'storageBucket': "employeeattendancerealtime.appspot.com"
+            })
 
         bucket = storage.bucket()
 

@@ -65,7 +65,17 @@ class Ui_LoginWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(9, 9, 9, 9)
+        self.Logo = QPushButton(self.frame)
+        self.Logo.setObjectName(u"Logo")
+        self.Logo.setEnabled(True)
+        icon = QIcon()
+        icon.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.Logo.setIcon(icon)
+        self.Logo.setIconSize(QSize(50, 50))
+        self.Logo.setCheckable(False)
+
+        self.verticalLayout_2.addWidget(self.Logo)
+
         self.adminId = QLineEdit(self.frame)
         self.adminId.setObjectName(u"adminId")
         self.adminId.setEnabled(True)
@@ -76,37 +86,40 @@ class Ui_LoginWindow(object):
 
         self.verticalLayout_2.addWidget(self.adminId)
 
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.adminPassword = QLineEdit(self.frame)
         self.adminPassword.setObjectName(u"adminPassword")
         self.adminPassword.setFont(font)
         self.adminPassword.setEchoMode(QLineEdit.Password)
 
-        self.verticalLayout_2.addWidget(self.adminPassword)
+        self.horizontalLayout_2.addWidget(self.adminPassword)
+
+        self.showPassword = QPushButton(self.frame)
+        self.showPassword.setObjectName(u"showPassword")
+        icon1 = QIcon()
+        icon1.addFile(u"icons/hide.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.showPassword.setIcon(icon1)
+
+        self.horizontalLayout_2.addWidget(self.showPassword)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
         self.loginButton = QPushButton(self.frame)
         self.loginButton.setObjectName(u"loginButton")
         self.loginButton.setFont(font)
-        icon = QIcon()
-        icon.addFile(u"../../../../Downloads/login.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.loginButton.setIcon(icon)
+        icon2 = QIcon()
+        icon2.addFile(u"../../../../Downloads/login.ico", QSize(), QIcon.Normal, QIcon.Off)
+        self.loginButton.setIcon(icon2)
         self.loginButton.setIconSize(QSize(25, 25))
         self.loginButton.setCheckable(True)
 
         self.verticalLayout_2.addWidget(self.loginButton)
 
 
-        self.gridLayout.addLayout(self.verticalLayout_2, 1, 0, 1, 1)
-
-        self.Logo = QPushButton(self.frame)
-        self.Logo.setObjectName(u"Logo")
-        self.Logo.setEnabled(True)
-        icon1 = QIcon()
-        icon1.addFile(u"icons/favicon_io/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
-        self.Logo.setIcon(icon1)
-        self.Logo.setIconSize(QSize(50, 50))
-        self.Logo.setCheckable(False)
-
-        self.gridLayout.addWidget(self.Logo, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.verticalLayout_2, 0, 0, 1, 1)
 
         self.frame_2 = QFrame(self.frame)
         self.frame_2.setObjectName(u"frame_2")
@@ -153,7 +166,7 @@ class Ui_LoginWindow(object):
         self.gridLayout_2.addWidget(self.line, 0, 1, 1, 1)
 
 
-        self.gridLayout.addWidget(self.frame_2, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.frame_2, 1, 0, 1, 1)
 
 
         self.gridLayout_4.addWidget(self.frame, 0, 0, 1, 1)
@@ -188,11 +201,12 @@ class Ui_LoginWindow(object):
 
     def retranslateUi(self, LoginWindow):
         LoginWindow.setWindowTitle(QCoreApplication.translate("LoginWindow", u"LoginWindow", None))
+        self.Logo.setText("")
         self.adminId.setPlaceholderText(QCoreApplication.translate("LoginWindow", u"User ID", None))
         self.adminPassword.setInputMask("")
         self.adminPassword.setPlaceholderText(QCoreApplication.translate("LoginWindow", u"Password", None))
+        self.showPassword.setText("")
         self.loginButton.setText(QCoreApplication.translate("LoginWindow", u"Login", None))
-        self.Logo.setText("")
         self.resetPassword.setText(QCoreApplication.translate("LoginWindow", u"Forgotten Your Password ", None))
         self.goToSignUp.setText(QCoreApplication.translate("LoginWindow", u"Don't have an account? Sign-Up", None))
     # retranslateUi
