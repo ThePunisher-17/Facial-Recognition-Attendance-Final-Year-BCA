@@ -149,7 +149,7 @@ class Attender(object):
                     if counter == 1:
                         # here we're getting data about the employee
                         employeeInfo = db.reference(
-                            f"Employee/{self.year}/{self.monthList[int(self.month)-1]}/{id}").get()
+                        f"Employee/{self.year}/{self.monthList[int(self.month)-1]}/{id}").get()
 
                         # print(employeeInfo)
                         # here we're getting image of employee from database

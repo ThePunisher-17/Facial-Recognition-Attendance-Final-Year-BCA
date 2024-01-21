@@ -44,7 +44,7 @@ class Project(QMainWindow):
         self.ui.stackedWidget.addWidget(self.admin)
         self.ui.stackedWidget.addWidget(self.resetpassword)
 
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.stackedWidget.setCurrentIndex(1)
 
         # Signup page actions
         self.signup.ui.adminSubmit.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(

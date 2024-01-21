@@ -1,16 +1,20 @@
-import os
-import pickle
-import numpy as np
 import cv2
+import pickle
+import os
+import numpy as np
 import face_recognition
 import cvzone
+import time
+from datetime import datetime
+
 import firebase_admin
+from firebase_admin import storage
 from firebase_admin import credentials
 from firebase_admin import db
-from firebase_admin import storage
-import numpy as np
-from datetime import datetime
-import time
+
+from PyQt5.QtWidgets import QWidget, QLabel
+from PySide6.QtWidgets import QApplication
+import sys
 
 
 class Attender(object):
@@ -43,8 +47,7 @@ class Attender(object):
         self.month = str.split(self.month, "-")
         self.year = self.month[0]
         self.month = self.month[1]
-        self.monthList = ["January", "February", "March", "April", "May", "June",
-                          "July", "August", "September", "October", "November", "December"]
+        self.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
         cap = cv2.VideoCapture(1)
         cap.set(3, 640)
@@ -111,7 +114,7 @@ class Attender(object):
                         if counter == 0:
                             cvzone.putTextRect(
                                 imgBackground, "Loading", (275, 400))
-                            cv2.imshow("Face Attendance", imgBackground)
+                            # cv2.imshow("Face Attendance", imgBackground)
                             cv2.waitKey(1)
                             counter = 1
                             modeType = 1
@@ -121,22 +124,20 @@ class Attender(object):
                     if counter == 1:
                         # Get the Data
                         employeeInfo = db.reference(
-                            f'Employee/2023/December/{id}').get()
+                        f"Employee/{self.year}/{self.monthList[int(self.month)-1]}/{id}").get()
                         # print(employeeInfo)
                         # Get the Image from the storage
                         blob = bucket.get_blob(
                             f'AdminPanel\Core\Images/{id}.jpeg')
-                        array = np.frombuffer(
-                            blob.download_as_string(), np.uint8)
+                        array = np.frombuffer(blob.download_as_string(), np.uint8)
                         imgStudent = cv2.imdecode(array, cv2.COLOR_BGRA2BGR)
                         # Update data of attendance
-                        datetimeObject = datetime.strptime(employeeInfo['Last_Attendance_time'],
-                                                           "%Y-%m-%d %H:%M:%S")
+                        datetimeObject = datetime.strptime(employeeInfo['Last_attendance_time'],"%Y-%m-%d %H:%M:%S")
                         secondsElapsed = (
                             datetime.now() - datetimeObject).total_seconds()
                         # print(secondsElapsed)
                         if secondsElapsed > 30:
-                            ref = db.reference(f'Employee/2023/December/{id}')
+                            ref = db.reference(f'Employee/{self.year}/{self.monthList[int(self.month)-1]}/{id}')
                             employeeInfo['total_attendance'] += 1
                             ref.child('total_attendance').set(
                                 employeeInfo['total_attendance'])
@@ -169,6 +170,9 @@ class Attender(object):
                                         cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
                             cv2.putText(imgBackground, str(employeeInfo['Starting_Year']), (1125, 625),
                                         cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
+                            cv2.putText(imgBackground, str(employeeInfo['Profession']), (1010, 550),
+                                        cv2.FONT_HERSHEY_COMPLEX, 0.6, (100, 100, 100), 1)
+                                        
 
                             (w, h), _ = cv2.getTextSize(
                                 employeeInfo['Name'], cv2.FONT_HERSHEY_COMPLEX, 1, 1)
@@ -192,7 +196,7 @@ class Attender(object):
                 modeType = 0
                 counter = 0
             cv2.imshow("The Attender", imgBackground)
-            cv2.waitKey(1)
+            cv2.waitKey(100)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break

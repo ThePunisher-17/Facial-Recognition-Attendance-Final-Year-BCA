@@ -99,7 +99,7 @@ class Ui_LoginWindow(object):
         self.showPassword = QPushButton(self.frame)
         self.showPassword.setObjectName(u"showPassword")
         icon1 = QIcon()
-        icon1.addFile(u"icons/hide.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"icons/hide.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.showPassword.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.showPassword)

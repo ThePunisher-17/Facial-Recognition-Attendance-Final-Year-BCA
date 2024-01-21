@@ -18,7 +18,7 @@ from getpass import getuser
 # from Core.encodegenerator import EncodeGenerator
 # from ui_form import Ui_AdminPanel
 
-from AdminPanel.Core.main import Attender
+from AdminPanel.Core.main1 import Attender
 from AdminPanel.savecurrentattendance import SaveCurrentAttendance
 from AdminPanel.Core.databasedataadder import DatabaseDataAdder
 from AdminPanel.Core.encodegenerator import EncodeGenerator
@@ -83,7 +83,7 @@ class AdminPanel(QWidget):
         self.ui.empExperience.setValidator(QRegularExpressionValidator(QRegularExpression(r"^[0-9]{2}$")))
 
 
-        if self.date == "1":
+        if self.date == "21":
             self.itIsFirstDay()
 
         #
@@ -505,36 +505,20 @@ class AdminPanel(QWidget):
         message.exec()
 
     def itIsFirstDay(self):
-
-        data = db.reference(
-            f"Employee/{int(self.year)}/{self.monthList[int(self.month)-2]}/").get()
+        if self.monthList[int(self.month)-2] == 'December':
+            data = db.reference(f"Employee/{int(self.year)-1}/{self.monthList[int(self.month)-2]}/").get()
+        else:
+            data = db.reference(f"Employee/{int(self.year)}/{self.monthList[int(self.month)-2]}/").get()
 
         for key, value in data.items():
             data[key]["total_attendance"] = 0
 
-        if self.monthList[int(self.month)-2] != "December":
-            ref = db.reference(
+        ref = db.reference(
                 f"Employee/{self.year}/{self.monthList[int(self.month)-1]}")
-            for key, value in data.items():
-                ref.child(str(key)).set(value)
+        for key, value in data.items():
+            ref.child(str(key)).set(value)
         
-        elif self.monthList[int(self.month)-1] != "January":
-            ref = db.reference(
-                f"Employee/{int(self.year)}/January")
-            for key, value in data.items():
-                ref.child(str(key)).set(value)
-
-        else:
-            year = int(self.year)
-            year -= 1
-            year = str(year)
-
-            ref = db.reference(
-                f"Employee/{year}/{self.monthList[int(self.month)-1]}")
-
-            for key, value in data.items():
-                ref.child(str(key)).set(value)
-
+        
     def generateReprots(self):
         months = ["January", "February", "March", "April", "May", "June",
                   "July", "August", "September", "October", "November", "December"]

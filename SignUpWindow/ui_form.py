@@ -24,9 +24,18 @@ class Ui_SignUpWindow(object):
         if not SignUpWindow.objectName():
             SignUpWindow.setObjectName(u"SignUpWindow")
         SignUpWindow.resize(800, 600)
+        self.gridLayout_5 = QGridLayout(SignUpWindow)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.verticalSpacer = QSpacerItem(20, 97, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_5.addItem(self.verticalSpacer, 0, 1, 1, 1)
+
+        self.horizontalSpacer_6 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_5.addItem(self.horizontalSpacer_6, 1, 0, 1, 1)
+
         self.coverFrame = QFrame(SignUpWindow)
         self.coverFrame.setObjectName(u"coverFrame")
-        self.coverFrame.setGeometry(QRect(70, 125, 694, 371))
         self.coverFrame.setFrameShape(QFrame.WinPanel)
         self.coverFrame.setFrameShadow(QFrame.Raised)
         self.gridLayout_4 = QGridLayout(self.coverFrame)
@@ -69,7 +78,7 @@ class Ui_SignUpWindow(object):
         font.setPointSize(20)
         self.Logo.setFont(font)
         icon = QIcon()
-        icon.addFile(u"Icons/favicon_io/favicon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u"Icons/logo.jpg", QSize(), QIcon.Normal, QIcon.Off)
         self.Logo.setIcon(icon)
         self.Logo.setIconSize(QSize(50, 50))
 
@@ -133,7 +142,7 @@ class Ui_SignUpWindow(object):
         self.showPassbutton_0 = QPushButton(self.frame)
         self.showPassbutton_0.setObjectName(u"showPassbutton_0")
         icon1 = QIcon()
-        icon1.addFile(u"icons/hide.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u"icons/hide.ico", QSize(), QIcon.Normal, QIcon.Off)
         self.showPassbutton_0.setIcon(icon1)
 
         self.horizontalLayout_5.addWidget(self.showPassbutton_0)
@@ -235,6 +244,17 @@ class Ui_SignUpWindow(object):
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.gridLayout_4.addItem(self.horizontalSpacer_4, 1, 2, 1, 1)
+
+
+        self.gridLayout_5.addWidget(self.coverFrame, 1, 1, 2, 1)
+
+        self.horizontalSpacer_10 = QSpacerItem(63, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_5.addItem(self.horizontalSpacer_10, 2, 2, 1, 1)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 96, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_5.addItem(self.verticalSpacer_2, 3, 1, 1, 1)
 
 
         self.retranslateUi(SignUpWindow)
