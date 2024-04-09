@@ -586,7 +586,7 @@ class AdminPanel(QWidget):
 
         ids = str(ids)
         print(self.db_ref)
-        if ids:
+        if ok:
             QMessageBox.information(self, "Info", f'ID number {ids} will now being deleted!')
 
             if ids in ids_list:
